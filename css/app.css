@@ -240,8 +240,6 @@ html, body {
     letter-spacing: 0.04em;
 }
 .rl-notation-scroll {
-    overflow-y: auto;
-    max-height: 60vh;
     padding: 8px 12px;
     display: flex;
     flex-direction: column;
