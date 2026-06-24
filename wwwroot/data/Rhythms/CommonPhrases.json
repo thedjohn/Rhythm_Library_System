@@ -1,0 +1,30 @@
+{
+  "Title": "Common Phrases",
+  "Page": 6,
+  "RhythmPatterns": [
+    { "Id": 1,  "Notes": [ "quarter",             "quarter",            "dotted_quarter",      "eighth"                        ] },
+    { "Id": 2,  "Notes": [ "eighth_tied",          "quarter",            "dotted_quarter",      "quarter"                       ] },
+    { "Id": 3,  "Notes": [ "quarter",              "dotted_quarter",     "quarter",             "eighth"                        ] },
+    { "Id": 4,  "Notes": [ "eighth_tied",          "dotted_quarter",     "quarter",             "quarter"                       ] },
+    { "Id": 5,  "Notes": [ "dotted_quarter",       "eighth",             "eighth_tied",         "quarter",       "eighth"       ] },
+    { "Id": 6,  "Notes": [ "dotted_quarter",       "eighth",             "quarter_tied",        "quarter"                       ] },
+    { "Id": 7,  "Notes": [ "quarter_tied",         "quarter",            "half"                                                 ] },
+    { "Id": 8,  "Notes": [ "dotted_quarter",       "eighth",             "dotted_quarter_tied", "eighth"                        ] },
+    { "Id": 9,  "Notes": [ "quarter",              "quarter",            "eighth_tied",         "quarter",       "eighth"       ] },
+    { "Id": 10, "Notes": [ "quarter_tied",         "quarter",            "dotted_quarter",      "eighth"                        ] },
+    { "Id": 11, "Notes": [ "dotted_quarter_tied",  "eighth",             "eighth_tied",         "dotted_quarter"                ] },
+    { "Id": 12, "Notes": [ "eighth_tied",          "quarter",            "eighth",              "quarter_tied",  "quarter"      ] }
+  ],
+  "Rhythm": [ 1,2, 3,4, 5,4, 9,7, 6,7, 8,7, 9,11, 1,12,9,4, 9,10,4,12 ],
+  "Groups": [
+    { "Label": "a.", "Start":  0, "Length": 2, "Repeat": true },
+    { "Label": "b.", "Start":  2, "Length": 2, "Repeat": true },
+    { "Label": "c.", "Start":  4, "Length": 2, "Repeat": true },
+    { "Label": "d.", "Start":  6, "Length": 2, "Repeat": true },
+    { "Label": "e.", "Start":  8, "Length": 2, "Repeat": true },
+    { "Label": "f.", "Start": 10, "Length": 2, "Repeat": true },
+    { "Label": "g.", "Start": 12, "Length": 2, "Repeat": true },
+    { "Label": "h.", "Start": 14, "Length": 4, "Repeat": true },
+    { "Label": "i.", "Start": 18, "Length": 4, "Repeat": true }
+  ]
+}

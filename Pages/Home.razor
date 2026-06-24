@@ -1,0 +1,790 @@
+﻿@page "/"
+@using RhythmLibraryWeb.Models
+@using RhythmLibraryWeb.Services
+@inject JsonDataService DataService
+@inject WebAudioService AudioService
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+
+<PageTitle>Rhythm Library System</PageTitle>
+
+<div class="rl-app">
+
+    <!-- Header -->
+    <div class="rl-header">
+        <span class="rl-title">Rhythm Library System</span>
+        <button class="rl-btn-help" @onclick='() => Nav.NavigateTo("/help")'>?</button>
+    </div>
+
+    <!-- Controls Row -->
+    <div class="rl-controls">
+        <div class="rl-select-group">
+            <label>PAGE</label>
+            <select @onchange="OnRhythmChanged" value="@_selectedRhythm">
+                @foreach (var r in _rhythmDisplayNames)
+                {
+                    <option value="@r">@r</option>
+                }
+            </select>
+        </div>
+        <div class="rl-select-group">
+            <label>PATTERN</label>
+            <select @onchange="OnPatternChanged" value="@_selectedPattern">
+                @foreach (var p in _patternDisplayNames)
+                {
+                    <option value="@p">@p</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <!-- Toggles & Tempo -->
+    <div class="rl-toggles">
+        <label><input type="checkbox" @bind="_clickEnabled" /> Click</label>
+        <label><input type="checkbox" @bind="_patternEnabled" /> Pattern</label>
+        <label><input type="checkbox" @bind="_humanizeEnabled" /> Humanize</label>
+        <div class="rl-tempo">
+            <span class="rl-tempo-val">@_tempo BPM</span>
+            <input type="range" min="40" max="240" @bind="_tempo" @bind:event="oninput" />
+        </div>
+        <div class="rl-vol">
+            <span>Click Vol</span>
+            <input type="range" min="0" max="100" value="@((int)(_clickVol*100))"
+                   @oninput="e => { _clickVol = int.Parse(e.Value.ToString()) / 100f; AudioService.SetClickVolume(_clickVol); }" />
+        </div>
+        <div class="rl-vol">
+            <span>Pattern Vol</span>
+            <input type="range" min="0" max="100" value="@((int)(_patternVol*100))"
+                   @oninput="e => { _patternVol = int.Parse(e.Value.ToString()) / 100f; AudioService.SetVolume(_patternVol); }" />
+        </div>
+        <button class="rl-btn-play" @onclick="PlayAsync" disabled="@_isPlaying">&#9654; Play</button>
+        <button class="rl-btn-stop" @onclick="Stop" disabled="@(!_isPlaying && !_isPaused)">&#9632; Stop</button>
+    </div>
+
+    <!-- Status -->
+    <div class="rl-status">@_status</div>
+
+    <!-- Two-column layout: Pattern Group + Rhythm Sequence -->
+    <div class="rl-main-columns">
+
+        <!-- LEFT: Pattern Group Panel -->
+        <div class="rl-pattern-wrapper">
+            <div class="rl-notation-header">
+                <span>PATTERN &mdash; @_selectedPattern</span>
+            </div>
+            @if (_patternData != null)
+            {
+                <div class="rl-pattern-groups">
+                    @{ int groupIdx = 0; }
+                    @{
+                        var _groupLabels = new Dictionary<string, (int num, string sym, string title)>
+                        {
+                            ["eighth"]         = (1, "♪", "EIGHTH"),
+                            ["quarter"]        = (2, "♩", "QUARTER"),
+                            ["dotted_quarter"] = (3, "♩.", "DOTTED QUARTER"),
+                            ["half"]           = (4, "𝅗𝅥", "HALF"),
+                        };
+                    }
+                    @foreach (var group in _patternData.DrumGroups.Where(g => g.Name != "snare_fine"))
+                    {
+                        var hasLabel = _groupLabels.TryGetValue(group.Name, out var lbl);
+                        var gName = group.Name;
+                        var gIdx  = groupIdx;
+                        <div class="rl-pattern-group">
+                            <div class="rl-group-label">
+                                @if (hasLabel)
+                                {
+                                    <span class="rl-group-num">@lbl.num</span>
+                                    <span class="rl-group-sym">@lbl.sym</span>
+                                    <span>@lbl.title</span>
+                                }
+                                else
+                                {
+                                    @group.Name.Replace("_", " ").ToUpper()
+                                }
+                                <button class="rl-preview-btn" title="Preview" @onclick="() => TogglePreviewAsync(gName, gIdx)">
+                                    @(_previewGroup == gName ? "■" : "▶")
+                                </button>
+                            </div>
+                            <canvas id="patgroup-@groupIdx" class="rl-pattern-canvas"></canvas>
+                        </div>
+                        groupIdx++;
+                    }
+                    <!-- Drum legend below all groups -->
+                    <canvas id="pattern-legend" class="rl-legend-canvas"></canvas>
+                </div>
+            }
+        </div>
+
+        <!-- RIGHT: Rhythm Sequence -->
+        <div class="rl-notation-wrapper">
+            <div class="rl-notation-header">
+                <span>RHYTHM SEQUENCE &mdash; @_selectedRhythm</span>
+            </div>
+            <div class="rl-notation-scroll">
+                @if (_rhythmData != null)
+                {
+                    int total = _rhythmData.Rhythm.Count;
+                    int rowNum = 0;
+                    for (int row = 0; row < total; row += 4)
+                    {
+                        var r = rowNum;
+                        var rowStart = row;
+                        bool rowActive  = (_activeRow >= row && _activeRow < row + 4);
+                        bool rowLooping = (_loopingMeasure >= row && _loopingMeasure < row + 4);
+                        <div class="rl-staff-row @(rowLooping ? "rl-row-looping" : rowActive ? "rl-row-active" : "") rl-staff-row-clickable"
+                             @onclick="e => PlayMeasureRowAsync(rowStart, e)">
+                            <canvas id="staffrow-@r" class="rl-staff-canvas"></canvas>
+                        </div>
+                        rowNum++;
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="rl-footer">
+    <div class="rl-footer-inner">
+        <div class="rl-footer-content">
+            <h2 class="rl-footer-title">Rhythm Library System <span class="rl-footer-sub">by GK Music</span></h2>
+            <p class="rl-footer-desc">
+                The ultimate sticking pattern resource for drummers and percussionists of every level.
+                Master <strong>four essential note values</strong> — eighth, quarter, dotted quarter, and half —
+                through a proven system of rhythmic combinations designed to build hand independence,
+                reading fluency, and musical confidence. Whether you're a student unlocking your first
+                grooves or a pro expanding your vocabulary, the Rhythm Library System gives you a
+                structured path from patterns to performance.
+            </p>
+            <ul class="rl-footer-benefits">
+                <li>🥁 Build <strong>hand independence</strong> with progressive sticking patterns</li>
+                <li>🎵 Develop <strong>rhythmic reading fluency</strong> across all note values</li>
+                <li>🔁 Loop and hear every pattern with this interactive companion app</li>
+                <li>📈 Progress systematically from beginner to advanced sequences</li>
+            </ul>
+        </div>
+        <a class="rl-footer-cta" href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">
+            Get the Book<br/>
+            <span>gk-music.com &rarr;</span>
+        </a>
+    </div>
+</footer>
+
+@code {
+    private List<string> _patternDisplayNames = new();
+    private List<string> _rhythmDisplayNames = new();
+    private string _selectedPattern = "";
+    private string _selectedRhythm = "";
+
+    private ThreeCampsData _rhythmData;
+    private GK16Data _patternData;
+
+    private bool _isPlaying;
+    private bool _isPaused;
+    private string _status = "Ready";
+    private int _tempo = 120;
+    private bool _clickEnabled = true;
+    private bool _patternEnabled = true;
+    private bool _humanizeEnabled = false;
+    private float _clickVol = 0.8f;
+    private float _patternVol = 0.8f;
+    private int _activeRow = -1;
+    private bool _showHelp;
+    private readonly Random _random = new Random();
+
+    private double HumanizeTimingMs() =>
+        _humanizeEnabled ? (_random.NextDouble() + _random.NextDouble() - 1.0) * 8.0 : 0.0;
+
+    private float HumanizeVelocity(float baseVol, bool isGhost)
+    {
+        if (isGhost) return _humanizeEnabled ? (float)(0.2 + _random.NextDouble() * 0.08) : 0.2f;
+        if (!_humanizeEnabled) return baseVol;
+        double spread = baseVol > 1.0f ? 0.08 : 0.12;
+        return (float)(baseVol * (1.0 + (_random.NextDouble() * 2 - 1) * spread));
+    }
+    private bool _needsRedraw = false;
+
+    // Playhead state (updated per-note during playback, read by RunPlayheadAsync at 30fps)
+    private int    _phRow          = -1;
+    private double _phRowFracStart = 0;
+    private double _phRowFracEnd   = 0;
+    private double _phNoteStartMs  = 0;
+    private double _phNoteDurMs    = 0;
+    private System.Diagnostics.Stopwatch _clock;
+
+    // Pattern highlight state (swept by 30fps loop)
+    private int    _phPatCanvas    = -1;   // canvas index (-1 = none)
+    private double _phPatStartMs   = 0;    // clock ms when note began
+    private double _phPatDurMs     = 0;    // total note duration in ms
+
+    private CancellationTokenSource _cts;
+    private CancellationTokenSource _previewCts;
+    private string _previewGroup = null;
+    private int  _loopingMeasure       = -1;   // patIdx of measure currently looping (-1 = none)
+    private bool _stopLoopAfterCurrent = false; // signal to finish current loop then stop
+
+    protected override async Task OnInitializedAsync()
+    {
+        _patternDisplayNames = DataService.AvailablePatterns
+            .Select(k => DataService.GetDisplayName(k))
+            .Where(n => n.StartsWith("GK 16th", StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        _rhythmDisplayNames = DataService.AvailableRhythms
+            .Select(k => DataService.GetRhythmDisplayName(k))
+            .Where(n => n == "Three Camps")
+            .ToList();
+
+        _selectedPattern = _patternDisplayNames.FirstOrDefault() ?? "";
+        _selectedRhythm  = _rhythmDisplayNames.FirstOrDefault() ?? "";
+
+        await LoadDataAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_needsRedraw && _rhythmData != null)
+        {
+            _needsRedraw = false;
+            try { await DrawAllMeasuresAsync(); } catch { }
+            try { await DrawPatternGroupsAsync(); } catch { }
+        }
+    }
+
+    private async Task LoadDataAsync()
+    {
+        _status = "Loading...";
+        var rhythmKey  = DataService.GetRhythmKeyFromDisplay(_selectedRhythm);
+        var patternKey = DataService.GetKeyFromDisplay(_selectedPattern);
+        _rhythmData  = await DataService.LoadRhythmAsync(rhythmKey);
+        _patternData = await DataService.LoadPatternAsync(patternKey);
+        _status = _rhythmData != null ? $"Ready - {_selectedRhythm} / {_selectedPattern}" : "Error loading data";
+        _needsRedraw = true;
+        StateHasChanged();
+    }
+
+    private async Task DrawAllMeasuresAsync()
+    {
+        if (_rhythmData == null) return;
+        int total  = _rhythmData.Rhythm.Count;
+        int rowNum = 0;
+        for (int row = 0; row < total; row += 4)
+        {
+            var measuresNotes = new List<List<string>>();
+            var activeInRow   = new List<bool>();
+            for (int col = 0; col < 4 && (row + col) < total; col++)
+            {
+                int mi      = row + col;
+                var patId   = _rhythmData.Rhythm[mi];
+                var pat     = _rhythmData.RhythmPatterns.FirstOrDefault(p => p.Id == patId);
+                measuresNotes.Add(pat?.Notes ?? new List<string>());
+                activeInRow.Add(mi == _activeRow);
+            }
+            try
+            {
+                await JS.InvokeVoidAsync("rhythmNotation.drawStaffRow",
+                    $"staffrow-{rowNum}", measuresNotes, activeInRow, rowNum == 0);
+            }
+            catch { }
+            rowNum++;
+        }
+    }
+
+    private async Task DrawPatternGroupsAsync()
+    {
+        if (_patternData == null) return;
+        int subdivCount = _patternData.Triplet ? 3 : _patternData.ThirtySecond ? 8 : 4;
+
+        int canvasIdx = 0;
+        foreach (var group in _patternData.DrumGroups.Where(g => g.Name != "snare_fine"))
+        {
+            var drumsJs = group.Drums.Select((d, idx) => new {
+                drum   = d.Drum,
+                limb   = d.Limb,
+                accent = d.Accent,
+                ghost  = d.Ghost,
+                beat   = d.Beat ?? idx
+            }).ToArray();
+            try { await JS.InvokeVoidAsync("rhythmNotation.drawPatternGroup", $"patgroup-{canvasIdx}", drumsJs, subdivCount); }
+            catch { }
+            canvasIdx++;
+        }
+
+        // Legend: collect unique drum names (excluding snare_fine group)
+        var uniqueDrums = _patternData.DrumGroups
+            .Where(g => g.Name != "snare_fine")
+            .SelectMany(g => g.Drums)
+            .Select(d => d.Ghost && d.Drum == "snare" ? "snare_ghost" : d.Drum)
+            .Distinct()
+            .ToArray();
+        try { await JS.InvokeVoidAsync("rhythmNotation.drawPatternLegend", "pattern-legend", uniqueDrums); }
+        catch { }
+    }
+
+    private async Task OnRhythmChanged(ChangeEventArgs e)
+    {
+        _selectedRhythm = e.Value?.ToString() ?? "";
+        await LoadDataAsync();
+    }
+
+    private async Task OnPatternChanged(ChangeEventArgs e)
+    {
+        _selectedPattern = e.Value?.ToString() ?? "";
+        await LoadDataAsync();
+    }
+
+    private async Task PlayAsync()
+    {
+        if (_rhythmData == null || _patternData == null) return;
+
+        try { await AudioService.InitializeAsync(); } catch { }
+        AudioService.SetVolume(_patternVol);
+        AudioService.SetClickVolume(_clickVol);
+
+        _isPlaying = true;
+        _isPaused  = false;
+        _activeRow = -1;
+        _phRow     = -1;
+        _cts       = new CancellationTokenSource();
+        var token  = _cts.Token;
+
+        StateHasChanged();
+
+        try
+        {
+            double beatMs = 60000.0 / _tempo;
+
+            // Count-in
+            for (int i = 4; i >= 1; i--)
+            {
+                if (token.IsCancellationRequested) return;
+                _status = $"Count-in: {i}";
+                StateHasChanged();
+                if (_clickEnabled) await AudioService.PlayClickAsync(i == 4);
+                await Task.Delay((int)beatMs, token);
+            }
+
+            _status = "Playing...";
+
+            _clock = System.Diagnostics.Stopwatch.StartNew();
+
+            var clickTask   = RunClickTrackAsync(beatMs, token);  // always runs; checks _clickEnabled per beat
+            var phTask      = RunPlayheadAsync(token);
+
+            var seq = new PatternSequence(_rhythmData);
+            var kit = new DrumKit(_patternData);
+
+            double scheduled = 0;
+            int    prevPatIdx = -1;
+            double cumBeatsInMeasure = 0;
+
+            foreach (var (patIdx, noteType) in FlattenSequence(seq))
+            {
+                if (token.IsCancellationRequested) break;
+
+                while (_isPaused && !token.IsCancellationRequested)
+                    await Task.Delay(20, token);
+
+                double wait = scheduled - _clock.Elapsed.TotalMilliseconds;
+                if (wait > 1) await Task.Delay((int)wait, token);
+
+                // Active row changed — redraw all rows (clears old playhead, cache refreshes)
+                if (_activeRow != patIdx)
+                {
+                    _activeRow = patIdx;
+                    cumBeatsInMeasure = 0;
+                    _needsRedraw = true;
+                    await InvokeAsync(StateHasChanged);
+                    try { await DrawAllMeasuresAsync(); } catch { }
+                }
+                else if (patIdx != prevPatIdx)
+                {
+                    cumBeatsInMeasure = 0;
+                }
+
+                // Update playhead interpolation state for this note
+                var rhPat     = _rhythmData.RhythmPatterns.FirstOrDefault(p => p.Id == _rhythmData.Rhythm[patIdx]);
+                double totalB = rhPat?.Notes?.Sum(n => Beats(n)) ?? 4.0;
+                int    rowNum = patIdx / 4;
+                int    col    = patIdx % 4;
+                int    measInRow = Math.Min(4, _rhythmData.Rhythm.Count - rowNum * 4);
+                double noteDur = beatMs * Beats(noteType);
+
+                _phRow          = rowNum;
+                _phRowFracStart = col + cumBeatsInMeasure / totalB;
+                _phRowFracEnd   = col + Math.Min(1.0, (cumBeatsInMeasure + Beats(noteType)) / totalB);
+                _phNoteStartMs  = _clock.Elapsed.TotalMilliseconds;
+                _phNoteDurMs    = noteDur;
+
+                prevPatIdx = patIdx;
+                cumBeatsInMeasure += Beats(noteType);
+
+                // Fire drum pattern sounds
+                if (!string.IsNullOrEmpty(noteType) && !noteType.EndsWith("_tied") && _patternEnabled)
+                {
+                    var group = kit.GetDrumGroupByName(NoteTypeToKey(noteType));
+                    if (group?.Drums != null)
+                    {
+                        var cg = group; var ck = kit;
+                        int cgIdx = kit.DrumGroups
+                            .Where(g => g.Name != "snare_fine")
+                            .ToList().IndexOf(group);
+                        _phPatCanvas  = cgIdx;
+                        _phPatStartMs = _clock.Elapsed.TotalMilliseconds;
+                        _phPatDurMs   = beatMs * Beats(noteType);
+                        _ = PlayDrumGroupAsync(cg, beatMs, ck.IsTriplet, ck.IsThirtySecond, token);
+                    }
+                }
+
+                scheduled += beatMs * Beats(noteType);
+            }
+
+            _status = "Complete";
+            _cts.Cancel();
+            try { await clickTask; } catch { }
+            try { await phTask;    } catch { }
+        }
+        catch (OperationCanceledException) { }
+        finally
+        {
+            _phRow       = -1;
+            _phPatCanvas = -1;
+            _isPlaying   = false;
+            _isPaused  = false;
+            _activeRow = -1;
+            _needsRedraw = true;
+            await InvokeAsync(StateHasChanged);
+            try { await DrawAllMeasuresAsync(); } catch { }
+        }
+    }
+
+    private async Task PlayMeasureRowAsync(int rowStart, MouseEventArgs e)
+    {
+        if (_rhythmData == null || _patternData == null) return;
+
+        // Determine which measure was clicked
+        int total      = _rhythmData.Rhythm.Count;
+        int measInRow  = Math.Min(4, total - rowStart);
+        int rowNum0    = rowStart / 4;
+        double elWidth = await JS.InvokeAsync<double>("rhythmNotation.getElementWidth", $"staffrow-{rowNum0}");
+        int clickedCol = elWidth > 0
+            ? Math.Clamp((int)(e.OffsetX / elWidth * measInRow), 0, measInRow - 1)
+            : 0;
+        int patIdx = rowStart + clickedCol;
+
+        // Second click on the same looping measure — stop after current repeat
+        if (_isPlaying && _loopingMeasure == patIdx)
+        {
+            _stopLoopAfterCurrent = true;
+            _status = "Finishing loop…";
+            StateHasChanged();
+            return;
+        }
+
+        // If something else is playing, cancel it first
+        if (_isPlaying) { _cts?.Cancel(); await Task.Delay(80); }
+
+        try { await AudioService.InitializeAsync(); } catch { }
+        AudioService.SetVolume(_patternVol);
+        AudioService.SetClickVolume(_clickVol);
+
+        _isPlaying             = true;
+        _isPaused              = false;
+        _loopingMeasure        = patIdx;
+        _stopLoopAfterCurrent  = false;
+        _cts                   = new CancellationTokenSource();
+        var token              = _cts.Token;
+
+        _activeRow   = patIdx;
+        _needsRedraw = true;
+        StateHasChanged();
+        try { await DrawAllMeasuresAsync(); } catch { }
+
+        try
+        {
+            double beatMs = 60000.0 / _tempo;
+            var kit       = new DrumKit(_patternData);
+            int rowNum    = patIdx / 4;
+            int col       = patIdx % 4;
+
+            var rhPat     = _rhythmData.RhythmPatterns.FirstOrDefault(p => p.Id == _rhythmData.Rhythm[patIdx]);
+            var notes     = rhPat?.Notes ?? new List<string> { "q", "q", "q", "q" };
+            double totalB = notes.Sum(n => Beats(n));
+
+            _clock        = System.Diagnostics.Stopwatch.StartNew();
+            var clickTask = RunClickTrackAsync(beatMs, token);
+            var phTask    = RunPlayheadAsync(token);
+
+            while (!_stopLoopAfterCurrent && !token.IsCancellationRequested)
+            {
+                _clock = System.Diagnostics.Stopwatch.StartNew();
+                _status = "Looping… (click measure again to stop)";
+                await InvokeAsync(StateHasChanged);
+
+                try { await JS.InvokeVoidAsync("rhythmNotation.updatePlayhead", $"staffrow-{rowNum}", (double)col); } catch { }
+
+                double cumBeats  = 0;
+                double scheduled = _clock.Elapsed.TotalMilliseconds;
+
+                foreach (var noteType in notes)
+                {
+                    if (token.IsCancellationRequested) break;
+
+                    double noteDur = beatMs * Beats(noteType);
+                    double wait    = scheduled - _clock.Elapsed.TotalMilliseconds;
+                    if (wait > 1) await Task.Delay((int)wait, token);
+
+                    _phRow          = rowNum;
+                    _phRowFracStart = col + cumBeats / totalB;
+                    _phRowFracEnd   = col + Math.Min(1.0, (cumBeats + Beats(noteType)) / totalB);
+                    _phNoteDurMs    = noteDur;
+                    _phNoteStartMs  = _clock.Elapsed.TotalMilliseconds;
+
+                    if (!string.IsNullOrEmpty(noteType) && !noteType.EndsWith("_tied") && _patternEnabled)
+                    {
+                        var group = kit.GetDrumGroupByName(NoteTypeToKey(noteType));
+                        if (group?.Drums != null)
+                        {
+                            int cgIdx     = kit.DrumGroups.Where(g => g.Name != "snare_fine").ToList().IndexOf(group);
+                            _phPatCanvas  = cgIdx;
+                            _phPatStartMs = _clock.Elapsed.TotalMilliseconds;
+                            _phPatDurMs   = noteDur;
+                            _ = PlayDrumGroupAsync(group, beatMs, kit.IsTriplet, kit.IsThirtySecond, token);
+                        }
+                    }
+
+                    scheduled += noteDur;
+                    cumBeats  += Beats(noteType);
+                }
+
+                double finalWait = scheduled - _clock.Elapsed.TotalMilliseconds;
+                if (finalWait > 1) await Task.Delay((int)finalWait, token);
+            }
+
+            _cts.Cancel();
+            try { await clickTask; } catch { }
+            try { await phTask;    } catch { }
+        }
+        catch (OperationCanceledException) { }
+        finally
+        {
+            _phRow          = -1;
+            _phPatCanvas    = -1;
+            _isPlaying      = false;
+            _isPaused       = false;
+            _activeRow      = -1;
+            _loopingMeasure = -1;
+            _needsRedraw    = true;
+            await InvokeAsync(StateHasChanged);
+            try { await DrawAllMeasuresAsync(); } catch { }
+        }
+    }
+
+    // Smooth 30fps playhead animation — interpolates red line within each note
+    private async Task RunPlayheadAsync(CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            if (_clock != null && !_isPaused)
+            {
+                double elapsed = _clock.Elapsed.TotalMilliseconds;
+
+                // Rhythm sequence playhead
+                int row = _phRow;
+                if (row >= 0 && _phNoteDurMs > 0)
+                {
+                    double t       = Math.Clamp((elapsed - _phNoteStartMs) / _phNoteDurMs, 0.0, 1.0);
+                    double rowFrac = _phRowFracStart + t * (_phRowFracEnd - _phRowFracStart);
+                    try { await JS.InvokeVoidAsync("rhythmNotation.updatePlayhead", $"staffrow-{row}", rowFrac); }
+                    catch { }
+                }
+
+            }
+            try { await Task.Delay(33, token); } catch { return; }
+        }
+    }
+
+    private async Task PlayDrumGroupAsync(DrumGroup group, double beatMs, bool triplet, bool thirtySecond, CancellationToken token)
+    {
+        double subdivMs = triplet ? beatMs / 3.0 : thirtySecond ? beatMs / 8.0 : beatMs / 4.0;
+
+        var beatGroups = group.Drums
+            .Select((d, i) => (drum: d, beat: d.Beat ?? i))
+            .GroupBy(x => x.beat)
+            .OrderBy(g => g.Key)
+            .ToList();
+
+        double subScheduled = 0;
+        var clock = System.Diagnostics.Stopwatch.StartNew();
+
+        foreach (var beatGroup in beatGroups)
+        {
+            if (token.IsCancellationRequested) return;
+            double wait = subScheduled - clock.Elapsed.TotalMilliseconds + HumanizeTimingMs();
+            if (wait > 1) try { await Task.Delay((int)wait, token); } catch { return; }
+
+            foreach (var item in beatGroup)
+            {
+                float baseVol = item.drum.Accent ? 1.4f : item.drum.Ghost ? 0.2f : 0.75f;
+                float vol     = HumanizeVelocity(baseVol, item.drum.Ghost);
+                string nm     = (item.drum.Ghost && item.drum.Drum == "snare") ? "snare_ghost" : item.drum.Drum;
+                await AudioService.PlayDrumSoundAsync(nm, vol);
+            }
+
+            // Highlight this beat's notes — fire and forget so audio timing is unaffected
+            var canvasId = $"patgroup-{_phPatCanvas}";
+            var beat = beatGroup.Key;
+            var dur  = (int)(subdivMs * 0.85);
+            _ = JS.InvokeVoidAsync("rhythmNotation.flashPatternBeat", canvasId, beat, dur);
+
+            subScheduled += subdivMs;
+        }
+    }
+
+    private async Task TogglePreviewAsync(string groupName, int canvasIdx)
+    {
+        _previewCts?.Cancel();
+        _previewCts = null;
+
+        if (_previewGroup == groupName)
+        {
+            _previewGroup = null;
+            StateHasChanged();
+            return;
+        }
+
+        try { await AudioService.InitializeAsync(); } catch { }
+        AudioService.SetVolume(_patternVol);
+
+        _previewGroup = groupName;
+        StateHasChanged();
+        _previewCts = new CancellationTokenSource();
+        _ = RunPreviewAsync(groupName, canvasIdx, _previewCts.Token);
+    }
+
+    private async Task RunPreviewAsync(string groupName, int canvasIdx, CancellationToken token)
+    {
+        try
+        {
+            var group = _patternData?.DrumGroups.FirstOrDefault(g => g.Name == groupName);
+            if (group == null) return;
+
+            bool triplet      = _patternData.Triplet;
+            bool thirtySecond = _patternData.ThirtySecond;
+
+            var beatGroups = group.Drums
+                .Select((d, i) => (drum: d, beat: d.Beat ?? i))
+                .GroupBy(x => x.beat)
+                .OrderBy(g => g.Key)
+                .ToList();
+
+            int maxBeat = beatGroups.Any() ? beatGroups.Max(g => g.Key) : 0;
+
+            while (!token.IsCancellationRequested)
+            {
+                try
+                {
+                    double beatMs   = 60000.0 / _tempo;
+                    double subdivMs = triplet ? beatMs / 3.0 : thirtySecond ? beatMs / 8.0 : beatMs / 4.0;
+                    double totalMs  = (maxBeat + 1) * subdivMs;
+
+                    var clock = System.Diagnostics.Stopwatch.StartNew();
+
+                    foreach (var bg in beatGroups)
+                    {
+                        if (token.IsCancellationRequested) return;
+                        double target = bg.Key * subdivMs;
+                        double wait   = target - clock.Elapsed.TotalMilliseconds;
+                        if (wait > 1) await Task.Delay((int)wait, token);
+
+                        foreach (var item in bg)
+                        {
+                            float vol = item.drum.Accent ? 1.4f : item.drum.Ghost ? 0.2f : 0.75f;
+                            string nm = (item.drum.Ghost && item.drum.Drum == "snare") ? "snare_ghost" : item.drum.Drum;
+                            await AudioService.PlayDrumSoundAsync(nm, vol);
+                        }
+
+                        _ = JS.InvokeVoidAsync("rhythmNotation.flashPatternBeat",
+                            $"patgroup-{canvasIdx}", bg.Key, (int)(subdivMs * 0.85));
+                    }
+
+                    // Wait until the full musical duration has elapsed before looping
+                    double remaining = totalMs - clock.Elapsed.TotalMilliseconds;
+                    if (remaining > 1) await Task.Delay((int)remaining, token);
+                }
+                catch (OperationCanceledException) { return; }
+                catch { /* keep looping on other errors */ }
+            }
+        }
+        catch (OperationCanceledException) { }
+        finally
+        {
+            if (_previewGroup == groupName)
+            {
+                _previewGroup = null;
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+    }
+
+    private async Task RunClickTrackAsync(double beatMs, CancellationToken token)
+    {
+        int beat = 0;
+        var clock = System.Diagnostics.Stopwatch.StartNew();
+        double scheduled = 0;
+        while (!token.IsCancellationRequested)
+        {
+            while (_isPaused && !token.IsCancellationRequested)
+                await Task.Delay(20, token);
+            double wait = scheduled - clock.Elapsed.TotalMilliseconds;
+            if (wait > 1) try { await Task.Delay((int)wait, token); } catch { return; }
+            if (!token.IsCancellationRequested && _clickEnabled)
+                await AudioService.PlayClickAsync(beat % 4 == 0);
+            scheduled += beatMs;
+            beat++;
+        }
+    }
+
+    private void TogglePause()
+    {
+        _isPaused = !_isPaused;
+        _status = _isPaused ? "Paused" : "Playing...";
+    }
+
+    private void Stop()
+    {
+        _cts?.Cancel();
+        _phRow  = -1;
+        _status = "Stopped";
+        _isPlaying = false;
+        _isPaused  = false;
+        _activeRow = -1;
+    }
+
+    private void ToggleHelp() => _showHelp = !_showHelp;
+
+    private static List<(int patIdx, string note)> FlattenSequence(PatternSequence seq)
+    {
+        var list = new List<(int, string)>();
+        for (int pi = 0; pi < seq.Sequence.Count; pi++)
+        {
+            var pat = seq.Patterns.Find(p => p.Id == seq.Sequence[pi]);
+            if (pat?.Notes == null) { list.Add((pi, null)); continue; }
+            foreach (var n in pat.Notes) list.Add((pi, n));
+        }
+        return list;
+    }
+
+    private static double Beats(string n) => n switch
+    {
+        "quarter"        => 1.0,
+        "half"           => 2.0,
+        "dotted_quarter" => 1.5,
+        "eighth"         => 0.5,
+        "snare_fine"     => 1.0,
+        _                => 1.0
+    };
+
+    private static string NoteTypeToKey(string n) => n?.EndsWith("_tied") == true ? n[..^5] : n;
+}

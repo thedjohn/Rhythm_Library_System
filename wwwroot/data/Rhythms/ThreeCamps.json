@@ -1,0 +1,27 @@
+{
+  "Title": "Three Camps",
+  "Page": 0,
+  "RhythmPatterns": [
+    {
+      "Id": 1,
+      "Notes": [ "quarter", "quarter", "quarter", "quarter" ]
+    },
+    {
+      "Id": 2,
+      "Notes": [ "quarter", "quarter", "half" ]
+    },
+    {
+      "Id": 3,
+      "Notes": [ "dotted_quarter", "eighth", "dotted_quarter", "eighth" ]
+    },
+    {
+      "Id": 4,
+      "Notes": [ "quarter", "quarter", "dotted_quarter", "eighth" ]
+    },
+    {
+      "Id": 5,
+      "Notes": [ "quarter", "quarter", "snare_fine", "" ]
+    }
+  ],
+  "Rhythm": [ 2, 2, 1, 2, 2, 2, 1, 4, 4, 4, 1, 4, 4, 4, 1, 4, 3, 4, 3, 4, 4, 4, 1, 4, 4, 4, 1, 5 ]
+}

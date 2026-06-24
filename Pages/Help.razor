@@ -1,0 +1,88 @@
+@page "/help"
+@inject NavigationManager Nav
+
+<PageTitle>Help — Rhythm Library System</PageTitle>
+
+<div class="rl-app">
+
+    <div class="rl-header">
+        <div style="display:flex; align-items:center; gap:12px;">
+            <button class="rl-btn-back" @onclick='() => Nav.NavigateTo("/")'>&#8592; Back</button>
+            <span class="rl-title">How to use Rhythm Library System</span>
+        </div>
+    </div>
+
+    <div class="rl-help-page">
+
+        <div class="rl-help-section">
+            <h2 class="rl-help-section-title">Getting started</h2>
+            <div class="rl-help-steps">
+                <div class="rl-help-step">
+                    <div class="rl-help-step-num">1</div>
+                    <p>Choose a <strong>Page</strong> — a rhythm exercise like Three Camps. This sets the notation displayed in the Rhythm Sequence on the right.</p>
+                </div>
+                <div class="rl-help-step">
+                    <div class="rl-help-step-num">2</div>
+                    <p>Choose a <strong>Pattern</strong> — the drum sticking pattern (e.g. GK 16ths 1) that plays along with the exercise. The Pattern column on the left shows the notes for each note value group.</p>
+                </div>
+                <div class="rl-help-step">
+                    <div class="rl-help-step-num">3</div>
+                    <p>Press <strong>Play</strong> to start a 4-beat count-in, then the full sequence plays with the click track and drum pattern together.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="rl-help-section">
+            <h2 class="rl-help-section-title">Controls</h2>
+            <div class="rl-help-grid">
+                <div class="rl-help-row"><span class="rl-help-label">Click</span><span>Toggles the metronome beep on or off. The accent beat plays at a higher pitch.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">Pattern</span><span>Toggles the drum pattern sounds on or off without stopping playback.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">Humanize</span><span>Adds subtle timing jitter (±8ms) and velocity variation to the drum pattern, making it feel more natural and less mechanical.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">BPM</span><span>Drag the tempo slider to set the speed. The number display is fixed-width so the layout stays stable between 2- and 3-digit tempos.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">Click Vol</span><span>Controls the volume of the metronome beep independently from the drum pattern.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">Pattern Vol</span><span>Controls the volume of the drum pattern sounds.</span></div>
+            </div>
+        </div>
+
+        <div class="rl-help-section">
+            <h2 class="rl-help-section-title">Pattern column</h2>
+            <div class="rl-help-grid">
+                <div class="rl-help-row"><span class="rl-help-label">&#9654; preview</span><span>Each pattern group (Eighth, Quarter, Dotted Quarter, Half) has a play button. Click it to hear that individual pattern loop on its own — useful for learning each note value before playing the full sequence.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">&#9632; stop</span><span>Click the same button again to stop the preview loop.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">red notes</span><span>While playing, individual notes in the pattern briefly turn red to show which beat is currently sounding.</span></div>
+            </div>
+            <div class="rl-help-note">
+                The legend at the bottom of the Pattern column shows the drum key: Snare, Kick, Hi Tom, Lo Tom. RH = right hand, LH = left hand, RF = right foot.
+            </div>
+        </div>
+
+        <div class="rl-help-section">
+            <h2 class="rl-help-section-title">Rhythm sequence</h2>
+            <div class="rl-help-grid">
+                <div class="rl-help-row"><span class="rl-help-label">full play</span><span>Press Play to run through every measure in order. The active row is highlighted in yellow and a red vertical line sweeps left to right showing the current beat position.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">single measure</span><span>Click any individual measure to loop just that measure — great for isolating a tricky rhythm and repeating it at tempo.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">stop loop</span><span>Click the same measure a second time to finish the current repeat and stop cleanly. Or press Stop to cut it immediately.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">yellow outline</span><span>Indicates the row currently playing during full sequence playback.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">blue outline</span><span>Indicates the row currently looping in single-measure mode.</span></div>
+            </div>
+        </div>
+
+        <div class="rl-help-section">
+            <h2 class="rl-help-section-title">Note values</h2>
+            <div class="rl-help-grid">
+                <div class="rl-help-row"><span class="rl-help-label">1 — eighth</span><span>Half a beat. Two eighth notes fill one beat.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">2 — quarter</span><span>One full beat. Four quarter notes fill a measure.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">3 — dotted quarter</span><span>One and a half beats.</span></div>
+                <div class="rl-help-row"><span class="rl-help-label">4 — half</span><span>Two beats. Two half notes fill a measure.</span></div>
+            </div>
+        </div>
+
+        <div class="rl-help-section rl-help-book">
+            <p>This app is the interactive companion to the <strong>Rhythm Library System</strong> book by GK Music — a structured method for building hand independence and rhythmic reading fluency through progressive sticking patterns.</p>
+            <a class="rl-help-book-link" href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">
+                Get the book at gk-music.com &#8599;
+            </a>
+        </div>
+
+    </div>
+</div>

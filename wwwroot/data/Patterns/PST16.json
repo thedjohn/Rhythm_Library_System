@@ -1,0 +1,60 @@
+{
+  "Title": "PS Triplets",
+  "Triplet": true,
+  "DrumGroups": [
+    {
+      "Name": "eighth",
+      "Drums": [
+        { "Drum": "cymbal", "Limb": "RH", "Accent": true, "Beat": 0 },
+        { "Drum": "kick",   "Limb": "RF",                 "Beat": 0 },
+        { "Drum": "snare",  "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "snare",  "Limb": "LH",                 "Beat": 2 }
+      ]
+    },
+    {
+      "Name": "quarter",
+      "Drums": [
+        { "Drum": "cymbal", "Limb": "RH", "Accent": true, "Beat": 0 },
+        { "Drum": "kick",   "Limb": "RF",                 "Beat": 0 },
+        { "Drum": "snare",  "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "snare",  "Limb": "LH",                 "Beat": 2 },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 3 },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 4 },
+        { "Drum": "snare",  "Limb": "LH", "Accent": true, "Beat": 5 }
+      ]
+    },
+    {
+      "Name": "dotted_quarter",
+      "Drums": [
+        { "Drum": "cymbal", "Limb": "RH", "Accent": true, "Beat": 0 },
+        { "Drum": "kick",   "Limb": "RF",                 "Beat": 0 },
+        { "Drum": "snare",  "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "snare",  "Limb": "LH",                 "Beat": 2 },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 3 },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 4 },
+        { "Drum": "snare",  "Limb": "LH", "Accent": true, "Beat": 5 },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 6 },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 7 },
+        { "Drum": "snare",  "Limb": "LH", "Accent": true, "Beat": 8 }
+      ]
+    },
+    {
+      "Name": "half",
+      "Drums": [
+        { "Drum": "cymbal", "Limb": "RH", "Accent": true, "Beat": 0  },
+        { "Drum": "kick",   "Limb": "RF",                 "Beat": 0  },
+        { "Drum": "snare",  "Limb": "LH",                 "Beat": 1  },
+        { "Drum": "snare",  "Limb": "LH",                 "Beat": 2  },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 3  },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 4  },
+        { "Drum": "snare",  "Limb": "LH", "Accent": true, "Beat": 5  },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 6  },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 7  },
+        { "Drum": "snare",  "Limb": "LH", "Accent": true, "Beat": 8  },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 9  },
+        { "Drum": "snare",  "Limb": "RH",                 "Beat": 10 },
+        { "Drum": "snare",  "Limb": "LH", "Accent": true, "Beat": 11 }
+      ]
+    }
+  ]
+}

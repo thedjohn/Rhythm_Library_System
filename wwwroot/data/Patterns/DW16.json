@@ -1,0 +1,56 @@
+{
+  "Title": "Dave Weckl",
+  "Triplet": true,
+  "DrumGroups": [
+    {
+      "Name": "eighth",
+      "Drums": [
+        { "Drum": "snare",     "Limb": "RH", "Accent": true, "Beat": 0 },
+        { "Drum": "high_tom",  "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "kick",      "Limb": "RF",                 "Beat": 2 }
+      ]
+    },
+    {
+      "Name": "quarter",
+      "Drums": [
+        { "Drum": "snare",     "Limb": "RH", "Accent": true, "Beat": 0 },
+        { "Drum": "high_tom",  "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 2 },
+        { "Drum": "low_tom",   "Limb": "LH",                 "Beat": 3 },
+        { "Drum": "kick",      "Limb": "RF",                 "Beat": 4 },
+        { "Drum": "kick",      "Limb": "RF",                 "Beat": 5 }
+      ]
+    },
+    {
+      "Name": "dotted_quarter",
+      "Drums": [
+        { "Drum": "snare",     "Limb": "RH", "Accent": true, "Beat": 0 },
+        { "Drum": "high_tom",  "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 2 },
+        { "Drum": "low_tom",   "Limb": "LH",                 "Beat": 3 },
+        { "Drum": "kick",      "Limb": "RF",                 "Beat": 4 },
+        { "Drum": "kick",      "Limb": "RF",                 "Beat": 5 },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 6 },
+        { "Drum": "snare",     "Limb": "LF",                 "Beat": 7 },
+        { "Drum": "snare",     "Limb": "LF",                 "Beat": 8 }
+      ]
+    },
+    {
+      "Name": "half",
+      "Drums": [
+        { "Drum": "snare",     "Limb": "RH", "Accent": true, "Beat": 0  },
+        { "Drum": "high_tom",  "Limb": "LH",                 "Beat": 1  },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 2  },
+        { "Drum": "low_tom",   "Limb": "LH",                 "Beat": 3  },
+        { "Drum": "kick",      "Limb": "RF",                 "Beat": 4  },
+        { "Drum": "kick",      "Limb": "RF",                 "Beat": 5  },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 6  },
+        { "Drum": "snare",     "Limb": "LF",                 "Beat": 7  },
+        { "Drum": "snare",     "Limb": "LF",                 "Beat": 8  },
+        { "Drum": "kick",      "Limb": "RF",                 "Beat": 9  },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 10 },
+        { "Drum": "high_tom",  "Limb": "LH",                 "Beat": 11 }
+      ]
+    }
+  ]
+}

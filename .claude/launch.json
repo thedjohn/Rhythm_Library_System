@@ -1,0 +1,11 @@
+﻿{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "RhythmLibraryWeb",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "C:\\Users\\derek\\source\\RhythmLibraryWeb"],
+      "port": 5149
+    }
+  ]
+}

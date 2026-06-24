@@ -1,0 +1,119 @@
+{
+  "Title": "GK 16ths IV",
+  "DrumGroups": [
+    {
+      "Name": "snare_fine",
+      "Drums": [
+        {
+          "Drum": "snare",
+          "Limb": "RH",
+          "Accent": true
+        }
+      ]
+    },
+    {
+      "Name": "eighth",
+      "Drums": [
+        {
+          "Drum": "kick",
+          "Limb": "RF",
+          "Accent": true
+        },
+        {
+          "Drum": "snare",
+          "Limb": "RH"
+        }
+      ]
+    },
+    {
+      "Name": "quarter",
+      "Drums": [
+        {
+          "Drum": "kick",
+          "Limb": "RF",
+          "Accent": true
+        },
+        {
+          "Drum": "snare",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        }
+      ]
+    },
+    {
+      "Name": "dotted_quarter",
+      "Drums": [
+        {
+          "Drum": "kick",
+          "Limb": "RF",
+          "Accent": true
+        },
+        {
+          "Drum": "snare",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        }
+      ]
+    },
+    {
+      "Name": "half",
+      "Drums": [
+        {
+          "Drum": "kick",
+          "Limb": "RF",
+          "Accent": true
+        },
+        {
+          "Drum": "snare",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        }
+      ]
+    }
+  ]
+}

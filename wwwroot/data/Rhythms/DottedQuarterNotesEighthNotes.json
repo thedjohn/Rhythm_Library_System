@@ -1,0 +1,21 @@
+{
+  "Title": "Dotted Quarter Notes & Eighth Notes",
+  "Page": 7,
+  "RhythmPatterns": [
+    { "Id": 1, "Notes": [ "dotted_quarter", "eighth", "quarter_tied", "eighth", "eighth" ] },
+    { "Id": 2, "Notes": [ "eighth", "eighth", "quarter", "eighth_tied", "dotted_quarter" ] },
+    { "Id": 3, "Notes": [ "dotted_quarter", "eighth", "eighth", "dotted_quarter" ] },
+    { "Id": 4, "Notes": [ "eighth", "eighth", "quarter_tied", "quarter", "eighth_tied", "eighth" ] },
+    { "Id": 5, "Notes": [ "dotted_quarter", "eighth", "quarter", "eighth_tied", "eighth" ] },
+    { "Id": 6, "Notes": [ "eighth", "eighth", "quarter_tied", "eighth", "dotted_quarter" ] }
+  ],
+  "Rhythm": [ 1, 2, 3, 4, 5, 6 ],
+  "Groups": [
+    { "Label": "a.", "Start": 0, "Length": 1, "Repeat": true },
+    { "Label": "b.", "Start": 1, "Length": 1, "Repeat": true },
+    { "Label": "c.", "Start": 2, "Length": 1, "Repeat": true },
+    { "Label": "d.", "Start": 3, "Length": 1, "Repeat": true },
+    { "Label": "e.", "Start": 4, "Length": 1, "Repeat": true },
+    { "Label": "f.", "Start": 5, "Length": 1, "Repeat": true }
+  ]
+}

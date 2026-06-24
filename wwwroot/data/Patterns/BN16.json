@@ -1,0 +1,51 @@
+{
+  "Title": "BN 16ths",
+  "DrumGroups": [
+    {
+      "Name": "snare_fine",
+      "Drums": [
+        { "Drum": "snare", "Limb": "RH", "Accent": true }
+      ]
+    },
+    {
+      "Name": "eighth",
+      "Drums": [
+        { "Drum": "snare", "Limb": "LH", "Accent": true },
+        { "Drum": "kick",  "Limb": "RF" }
+      ]
+    },
+    {
+      "Name": "quarter",
+      "Drums": [
+        { "Drum": "snare",    "Limb": "LH", "Accent": true },
+        { "Drum": "snare",    "Limb": "RH" },
+        { "Drum": "kick",     "Limb": "RF" },
+        { "Drum": "kick",     "Limb": "RF" }
+      ]
+    },
+    {
+      "Name": "dotted_quarter",
+      "Drums": [
+        { "Drum": "snare",    "Limb": "LH", "Accent": true },
+        { "Drum": "snare",    "Limb": "RH" },
+        { "Drum": "high_tom", "Limb": "LH" },
+        { "Drum": "low_tom",  "Limb": "RH" },
+        { "Drum": "kick",     "Limb": "RF" },
+        { "Drum": "kick",     "Limb": "RF" }
+      ]
+    },
+    {
+      "Name": "half",
+      "Drums": [
+        { "Drum": "snare",    "Limb": "LH", "Accent": true },
+        { "Drum": "snare",    "Limb": "RH" },
+        { "Drum": "high_tom", "Limb": "LH" },
+        { "Drum": "low_tom",  "Limb": "RH" },
+        { "Drum": "low_tom",  "Limb": "LH" },
+        { "Drum": "low_tom",  "Limb": "RH" },
+        { "Drum": "kick",     "Limb": "RF" },
+        { "Drum": "kick",     "Limb": "RF" }
+      ]
+    }
+  ]
+}
