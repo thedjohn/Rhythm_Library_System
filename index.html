@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,7 +24,7 @@
     <div id="blazor-error-ui">
         An unhandled error has occurred.
         <a href="." class="reload">Reload</a>
-        <span class="dismiss">🗙</span>
+        <span class="dismiss">&#x1F5D9;</span>
     </div>
     <div id="rotate-msg" style="display:none; position:fixed; inset:0; background:#1a1a2e; color:#fff; flex-direction:column; align-items:center; justify-content:center; gap:20px; z-index:9999; text-align:center; padding:32px;">
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,18 +36,22 @@
         <p style="font-size:0.85rem; color:#90caf9; margin:0;">Rhythm Library System works best in landscape mode.</p>
     </div>
 
-    <script src="js/audio.js?v=2"></script>
-    <script src="js/notation.js?v=2"></script>
+    <script src="js/audio.js?v=3"></script>
+    <script src="js/notation.js?v=3"></script>
     <script>
         function checkOrientation() {
             var el = document.getElementById('rotate-msg');
-            var isMobile = window.innerWidth < 900;
-            var isPortrait = window.innerHeight > window.innerWidth;
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            var isMobile = w < 900;
+            var isPortrait = h > w;
             el.style.display = (isMobile && isPortrait) ? 'flex' : 'none';
         }
         checkOrientation();
         window.addEventListener('resize', checkOrientation);
-        window.addEventListener('orientationchange', checkOrientation);
+        window.addEventListener('orientationchange', function() {
+            setTimeout(checkOrientation, 300);
+        });
     </script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
