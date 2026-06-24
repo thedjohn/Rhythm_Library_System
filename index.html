@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,13 +41,20 @@
     <script>
         function checkOrientation() {
             var el = document.getElementById('rotate-msg');
-            var w = window.innerWidth;
-            var h = window.innerHeight;
-            var isMobile = w < 900;
-            var isPortrait = h > w;
+            // Use physical screen dimensions to detect phone (unaffected by rotation)
+            var minDim = Math.min(screen.width, screen.height);
+            var isMobile = minDim < 600;
+            // matchMedia is the most reliable orientation check across Android/iOS
+            var isPortrait = window.matchMedia
+                ? window.matchMedia('(orientation: portrait)').matches
+                : window.innerHeight > window.innerWidth;
             el.style.display = (isMobile && isPortrait) ? 'flex' : 'none';
         }
         checkOrientation();
+        // Listen via matchMedia for reliable orientation change on Android
+        if (window.matchMedia) {
+            window.matchMedia('(orientation: portrait)').addEventListener('change', checkOrientation);
+        }
         window.addEventListener('resize', checkOrientation);
         window.addEventListener('orientationchange', function() {
             setTimeout(checkOrientation, 300);
