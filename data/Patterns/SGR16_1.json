@@ -1,0 +1,56 @@
+{
+  "Title": "Steve Gadd Ratamacue I",
+  "Triplet": true,
+  "DrumGroups": [
+    {
+      "Name": "eighth",
+      "Drums": [
+        { "Drum": "kick",      "Limb": "RF", "Accent": true, "Beat": 0 },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 2 }
+      ]
+    },
+    {
+      "Name": "quarter",
+      "Drums": [
+        { "Drum": "kick",      "Limb": "RF", "Accent": true, "Beat": 0 },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 2 },
+        { "Drum": "snare",     "Limb": "RH",                 "Beat": 3 },
+        { "Drum": "high_tom",  "Limb": "LH",                 "Beat": 4 },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 5 }
+      ]
+    },
+    {
+      "Name": "dotted_quarter",
+      "Drums": [
+        { "Drum": "kick",      "Limb": "RF", "Accent": true, "Beat": 0 },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 1 },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 2 },
+        { "Drum": "snare",     "Limb": "RH",                 "Beat": 3 },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 4 },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 5 },
+        { "Drum": "snare",     "Limb": "RH",                 "Beat": 6 },
+        { "Drum": "high_tom",  "Limb": "LH",                 "Beat": 7 },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 8 }
+      ]
+    },
+    {
+      "Name": "half",
+      "Drums": [
+        { "Drum": "kick",      "Limb": "RF", "Accent": true, "Beat": 0  },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 1  },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 2  },
+        { "Drum": "snare",     "Limb": "RH",                 "Beat": 3  },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 4  },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 5  },
+        { "Drum": "snare",     "Limb": "RH",                 "Beat": 6  },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 7  },
+        { "Drum": "snare",     "Limb": "LH",                 "Beat": 8  },
+        { "Drum": "snare",     "Limb": "RH",                 "Beat": 9  },
+        { "Drum": "high_tom",  "Limb": "LH",                 "Beat": 10 },
+        { "Drum": "low_tom",   "Limb": "RH",                 "Beat": 11 }
+      ]
+    }
+  ]
+}

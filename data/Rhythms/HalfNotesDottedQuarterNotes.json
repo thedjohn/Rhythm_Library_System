@@ -1,0 +1,15 @@
+{
+  "Title": "Half Notes & Dotted Quarter Notes",
+  "Page": 4,
+  "RhythmPatterns": [
+    { "Id": 1, "Notes": [ "dotted_quarter", "eighth", "quarter_tied", "quarter" ] },
+    { "Id": 2, "Notes": [ "eighth_tied", "eighth", "quarter_tied", "half" ] },
+    { "Id": 3, "Notes": [ "half", "quarter", "eighth_tied", "eighth" ] },
+    { "Id": 4, "Notes": [ "quarter_tied", "quarter", "eighth_tied", "eighth", "quarter_tied" ] }
+  ],
+  "Rhythm": [ 1, 2, 3, 4 ],
+  "Groups": [
+    { "Label": "a.", "Start": 0, "Length": 2, "Repeat": true },
+    { "Label": "b.", "Start": 2, "Length": 2, "Repeat": true }
+  ]
+}

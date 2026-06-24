@@ -1,0 +1,20 @@
+{
+  "Title": "Sixteen Bar Exercise",
+  "Page": 5,
+  "RhythmPatterns": [
+    { "Id": 1, "Notes": [ "half", "half" ] },
+    { "Id": 2, "Notes": [ "quarter", "quarter", "quarter", "quarter" ] },
+    { "Id": 3, "Notes": [ "dotted_quarter", "eighth", "quarter_tied", "quarter" ] },
+    { "Id": 4, "Notes": [ "quarter", "quarter", "eighth_tied", "dotted_quarter" ] },
+    { "Id": 5, "Notes": [ "dotted_quarter", "eighth", "eighth_tied", "dotted_quarter" ] },
+    { "Id": 6, "Notes": [ "dotted_quarter", "eighth", "quarter_tied", "quarter" ] },
+    { "Id": 7, "Notes": [ "eighth_tied", "dotted_quarter", "half" ] }
+  ],
+  "Rhythm": [ 1, 2, 1, 3, 1, 2, 1, 4, 1, 2, 1, 5, 1, 2, 6, 7 ],
+  "Groups": [
+    { "Label": "d.", "Start": 0,  "Length": 4, "Repeat": true },
+    { "Label": "e.", "Start": 4,  "Length": 4, "Repeat": true },
+    { "Label": "f.", "Start": 8,  "Length": 4, "Repeat": true },
+    { "Label": "g.", "Start": 12, "Length": 4, "Repeat": true }
+  ]
+}
