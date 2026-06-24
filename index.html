@@ -10,6 +10,25 @@
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="RhythmLibraryWeb.styles.css" rel="stylesheet" />
+    <style>
+        #rotate-msg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #1a1a2e;
+            color: #fff;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 9999;
+            text-align: center;
+            padding: 32px;
+        }
+        @media (max-width: 899px) and (orientation: portrait) {
+            #rotate-msg { display: flex; }
+        }
+    </style>
 </head>
 
 <body>
@@ -26,7 +45,7 @@
         <a href="." class="reload">Reload</a>
         <span class="dismiss">&#x1F5D9;</span>
     </div>
-    <div id="rotate-msg" style="display:none; position:fixed; inset:0; background:#1a1a2e; color:#fff; flex-direction:column; align-items:center; justify-content:center; gap:20px; z-index:9999; text-align:center; padding:32px;">
+    <div id="rotate-msg">
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="18" y="8" width="28" height="48" rx="4" stroke="#2979ff" stroke-width="3"/>
             <path d="M8 40 C8 28 20 16 36 14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" stroke-dasharray="4 3"/>
@@ -38,28 +57,6 @@
 
     <script src="js/audio.js?v=3"></script>
     <script src="js/notation.js?v=3"></script>
-    <script>
-        function checkOrientation() {
-            var el = document.getElementById('rotate-msg');
-            // Use physical screen dimensions to detect phone (unaffected by rotation)
-            var minDim = Math.min(screen.width, screen.height);
-            var isMobile = minDim < 600;
-            // matchMedia is the most reliable orientation check across Android/iOS
-            var isPortrait = window.matchMedia
-                ? window.matchMedia('(orientation: portrait)').matches
-                : window.innerHeight > window.innerWidth;
-            el.style.display = (isMobile && isPortrait) ? 'flex' : 'none';
-        }
-        checkOrientation();
-        // Listen via matchMedia for reliable orientation change on Android
-        if (window.matchMedia) {
-            window.matchMedia('(orientation: portrait)').addEventListener('change', checkOrientation);
-        }
-        window.addEventListener('resize', checkOrientation);
-        window.addEventListener('orientationchange', function() {
-            setTimeout(checkOrientation, 300);
-        });
-    </script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 
