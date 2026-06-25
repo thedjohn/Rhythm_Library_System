@@ -25,21 +25,13 @@ jobs:
       - name: Set base href for /app/ path
         run: sed -i 's|<base href="/" />|<base href="/app/" />|g' publish/wwwroot/index.html
 
-      - name: Set up /app directory
-        run: |
-          mkdir -p publish/wwwroot/app
-          cp -r publish/wwwroot/_framework publish/wwwroot/app/
-          cp -r publish/wwwroot/js publish/wwwroot/app/
-          cp -r publish/wwwroot/css publish/wwwroot/app/
-          cp -r publish/wwwroot/lib publish/wwwroot/app/
-          cp publish/wwwroot/index.html publish/wwwroot/app/index.html
-          cp publish/wwwroot/favicon.png publish/wwwroot/app/ 2>/dev/null || true
-          cp publish/wwwroot/RhythmLibraryWeb.styles.css publish/wwwroot/app/ 2>/dev/null || true
+      - name: Copy entire app to /app subdirectory
+        run: cp -r publish/wwwroot publish/wwwroot-copy && mkdir -p publish/wwwroot/app && cp -r publish/wwwroot-copy/. publish/wwwroot/app/
 
-      - name: Set landing page as root
-        run: cp publish/wwwroot/landing.html publish/wwwroot/index.html
+      - name: Set landing page as root index
+        run: cp publish/wwwroot/app/landing.html publish/wwwroot/index.html
 
-      - name: SPA 404 fallback
+      - name: SPA 404 fallback points to app
         run: cp publish/wwwroot/app/index.html publish/wwwroot/404.html
 
       - name: Add .nojekyll
