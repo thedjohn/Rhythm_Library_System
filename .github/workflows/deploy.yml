@@ -23,7 +23,7 @@ jobs:
         run: dotnet publish RhythmLibraryWeb.csproj -c Release -o publish
 
       - name: Fix base href for GitHub Pages
-        run: sed -i 's|<base href="/" />|<base href="/Rhythm_Library_System/" />|g' publish/wwwroot/index.html
+        run: sed -i 's|<base href="/" />|<base href="/" />|g' publish/wwwroot/index.html
 
       - name: Copy index.html to 404.html (SPA routing)
         run: cp publish/wwwroot/index.html publish/wwwroot/404.html
@@ -36,3 +36,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: publish/wwwroot
+          cname: www.rhythmlibrarysystem.com
