@@ -157,7 +157,7 @@ window.rhythmNotation = (() => {
             const aY = staffY - 18;
             ctx.lineWidth = 1.3; ctx.lineJoin = 'miter';
             ctx.beginPath();
-            ctx.moveTo(x - 4, aY - 5); ctx.lineTo(x + 4, aY); ctx.lineTo(x - 4, aY + 5);
+            ctx.moveTo(x - 5, aY + 4); ctx.lineTo(x, aY - 4); ctx.lineTo(x + 5, aY + 4);
             ctx.stroke();
             ctx.restore();
         }
