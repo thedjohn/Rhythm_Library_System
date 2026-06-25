@@ -1,0 +1,144 @@
+@page "/landing"
+@inject NavigationManager Nav
+
+<PageTitle>Rhythm Library System — Drum Pattern Method by Gordy Knudtson</PageTitle>
+
+<div class="ld-page">
+
+    <!-- Hero -->
+    <section class="ld-hero">
+        <div class="ld-hero-badge">Free Interactive App + $9.95 Book</div>
+        <h1>The <span class="ld-accent">Rhythm Library System</span><br />by Gordy Knudtson</h1>
+        <p class="ld-hero-sub">Technique Development for Drums</p>
+        <p class="ld-hero-desc">A simplified method for developing fluent drumset and snare drum technique — creating hundreds of sticking pattern combinations within a musical framework. Try the free interactive app to preview the system in action, then get the full 83-page PDF.</p>
+        <div class="ld-btns">
+            <button class="ld-btn-primary" @onclick='() => Nav.NavigateTo("/")'>Launch the Free App</button>
+            <a class="ld-btn-secondary" href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">Get the Book — $9.95</a>
+        </div>
+    </section>
+
+    <!-- Audience bar -->
+    <div class="ld-audience-bar">
+        Perfect for:&nbsp;
+        <strong>Beginner Drummers</strong><span class="ld-sep">|</span>
+        <strong>Intermediate Players</strong><span class="ld-sep">|</span>
+        <strong>Advanced Drummers</strong><span class="ld-sep">|</span>
+        <strong>Drum Teachers</strong><span class="ld-sep">|</span>
+        <strong>Students</strong>
+    </div>
+
+    <!-- The Concept -->
+    <div class="ld-white">
+        <div class="ld-section">
+            <div class="ld-label">The Concept</div>
+            <h2>A smarter approach to drum pattern application</h2>
+            <p>The Rhythm Library System is a simplification and expansion of an idea that has been floating around the drum world for years. The concept: <strong>using the solo pages from the middle of the Syncopation book</strong> for sequencing a select group of rudimental patterns or drumset patterns. The goal: creating a flow of patterns which conforms to the rhythmic architecture of the solo page — a wall of sound containing a rhythmic melody.</p>
+            <blockquote class="ld-quote">
+                "In the past, when this idea was explained there were always eight patterns in a group — four patterns for the notes, and four patterns for the rests. Gordy discovered you could eliminate the rest patterns and still get the same results using just the note patterns — half note, dotted quarter, quarter note, and eighth note."
+            </blockquote>
+            <p>To make pattern application even easier, Gordy created a catalog — or <strong>Library</strong> — of simple two and four bar rhythmic phrases which combine only two or three note values at a time. These simpler combinations proved more useful and just as effective as applying all four patterns to more complicated rhythms.</p>
+            <p>The result is a system that is <strong>accessible to beginners, challenging for advanced players, and immediately useful for teachers</strong> looking for a structured approach to building student vocabulary.</p>
+        </div>
+    </div>
+
+    <!-- Who it is for -->
+    <div class="ld-gray">
+        <div class="ld-section">
+            <div class="ld-label" style="text-align:center;">Who It Is For</div>
+            <h2 style="text-align:center;">Built for every level of drummer</h2>
+            <div class="ld-who-grid">
+                <div class="ld-who-card"><div class="ld-who-icon">🥁</div><h3>Beginners</h3><p>Simple two-note combinations make the system approachable from day one — build confidence with each pattern group.</p></div>
+                <div class="ld-who-card"><div class="ld-who-icon">🎯</div><h3>Intermediate Players</h3><p>Expand your vocabulary and develop hand independence through progressive sticking pattern sequences.</p></div>
+                <div class="ld-who-card"><div class="ld-who-icon">⭐</div><h3>Advanced Drummers</h3><p>Apply the full library to complex rhythms and develop a cohesive solo vocabulary — a wall of sound with rhythmic melody.</p></div>
+                <div class="ld-who-card"><div class="ld-who-icon">📚</div><h3>Teachers &amp; Students</h3><p>A structured, reproducible method ideal for lesson plans. The interactive app makes demonstration instant.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App preview -->
+    <div class="ld-dark">
+        <div class="ld-section" style="text-align:center;">
+            <div class="ld-label-light">Free Interactive Preview</div>
+            <h2 style="color:#fff;">See and hear the system before you buy</h2>
+            <p style="color:#b0c4de; max-width:640px; margin:0 auto 12px;">The free interactive app lets you <strong style="color:#fff;">experience the Rhythm Library System in action</strong> before purchasing the book. Select a pattern group, set your tempo, and hear how the sticking patterns flow against the rhythm sequence.</p>
+            <p style="color:#b0c4de; max-width:640px; margin:0 auto 32px;">This is not just a demo — it is a <strong style="color:#fff;">fully working practice tool</strong> you can use alongside the book every time you sit down at the kit.</p>
+            <div class="ld-steps">
+                <div class="ld-step"><div class="ld-step-num">1</div><h3>Choose a Page</h3><p>Select a rhythm exercise like Three Camps to load the notation sequence.</p></div>
+                <div class="ld-step"><div class="ld-step-num">2</div><h3>Choose a Pattern</h3><p>Pick a GK 16ths sticking pattern and see the drum notation in real time.</p></div>
+                <div class="ld-step"><div class="ld-step-num">3</div><h3>Play &amp; Practice</h3><p>Press Play or click any single measure to loop it at your tempo.</p></div>
+            </div>
+            <button class="ld-btn-primary" style="font-size:1.05rem; padding:16px 40px;" @onclick='() => Nav.NavigateTo("/")'>Launch the Free App</button>
+        </div>
+    </div>
+
+    <!-- App features -->
+    <div class="ld-white">
+        <div class="ld-section">
+            <div class="ld-label" style="text-align:center;">App Features</div>
+            <h2 style="text-align:center;">A complete practice companion</h2>
+            <div class="ld-features-grid">
+                <div class="ld-feature-card"><div class="ld-feature-icon">🥁</div><h3>Live Drum Audio</h3><p>Hear every sticking pattern played back with snare, kick, hi tom, and lo tom sounds.</p></div>
+                <div class="ld-feature-card"><div class="ld-feature-icon">🎼</div><h3>Music Notation</h3><p>Full drum notation rendered in real time with a live playhead indicator.</p></div>
+                <div class="ld-feature-card"><div class="ld-feature-icon">🎯</div><h3>Single Measure Loop</h3><p>Click any measure to loop just that measure — perfect for isolating a tricky rhythm.</p></div>
+                <div class="ld-feature-card"><div class="ld-feature-icon">⏱️</div><h3>Adjustable Tempo</h3><p>Set your BPM with a slider. The metronome click track keeps you in time at any speed.</p></div>
+                <div class="ld-feature-card"><div class="ld-feature-icon">🎲</div><h3>Humanize Mode</h3><p>Adds subtle timing and velocity variation so the pattern feels musical, not mechanical.</p></div>
+                <div class="ld-feature-card"><div class="ld-feature-icon">💻</div><h3>No Download Needed</h3><p>Runs entirely in your browser on desktop and tablet — open and play instantly.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book CTA -->
+    <div class="ld-white" style="border-top:1px solid #e0e0e0;">
+        <div class="ld-section" style="text-align:center;">
+            <div class="ld-price-badge">$9.95 — Digital PDF</div>
+            <h2>Get the Full Rhythm Library System Book</h2>
+            <p style="max-width:640px; margin:0 auto 16px;">The 83-page PDF by <strong>Gordy Knudtson</strong> is the complete method — everything the interactive app is built from, with the full catalog of pattern groups, rudimental patterns, and rhythmic phrase library ready to use in your practice sessions and lessons.</p>
+            <p style="max-width:640px; margin:0 auto 24px;">Once you understand how the system works, you can easily apply your own custom pattern group ideas to expand it indefinitely.</p>
+            <div class="ld-includes">
+                <span>83-page digital PDF</span>
+                <span>24 drumset pattern groups</span>
+                <span>16 rudimental pattern groups</span>
+                <span>Rhythmic phrase library</span>
+                <span>Instant download</span>
+                <span>Apply your own patterns</span>
+            </div>
+            <a class="ld-btn-primary" style="font-size:1.05rem; padding:16px 40px;" href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">Buy the Book at gk-music.com ↗</a>
+        </div>
+    </div>
+
+    <!-- About the Author -->
+    <div class="ld-gray">
+        <div class="ld-section">
+            <div class="ld-label">About the Author</div>
+            <h2>Gordy Knudtson — World-Class Drummer &amp; Educator</h2>
+            <div class="ld-author-grid">
+                <div class="ld-author-bio">
+                    <p>Gordy Knudtson is a professional drummer, educator, and author with one of the most distinguished careers in modern drumming. He served as the drummer for the <strong>Steve Miller Band for more than thirty years</strong> — joining in 1987 and performing with them through 2021, including their induction into the <strong>Rock and Roll Hall of Fame in 2016</strong>.</p>
+                    <p>Throughout his career Gordy has collaborated with Booker T. &amp; the MGs, jazz pianist Ben Sidran, guitarist Roy Buchanan, and Cuban pianist Nachito Herrera. He began drumming at age 15 and turned professional at 17.</p>
+                    <p>As an educator, Gordy headed the <strong>Percussion Department at McNally Smith College</strong> in St. Paul, Minnesota. He also pioneered the development of <strong>Open/Close Technique</strong> — published in Percussive Notes Magazine and presented at PASIC 2003 alongside drum legends Joe Morello and Jim Chapin. Ed Shaughnessy described it as <em>"an historically important form of technique that ranks with the Moeller system."</em></p>
+                </div>
+                <div class="ld-author-sidebar">
+                    <div class="ld-highlights-card">
+                        <div class="ld-highlights-title">Career Highlights</div>
+                        <ul>
+                            <li>🎸 Steve Miller Band — 30+ years</li>
+                            <li>🏆 Rock &amp; Roll Hall of Fame 2016</li>
+                            <li>🎓 McNally Smith College — Dept. Head</li>
+                            <li>🥁 Booker T. &amp; the MGs</li>
+                            <li>🎹 Ben Sidran — 6 years</li>
+                            <li>📖 Open/Close Technique pioneer</li>
+                            <li>🎵 PASIC 2003 featured artist</li>
+                        </ul>
+                    </div>
+                    <a class="ld-bio-link" href="https://www.gk-music.com/gordy-knudtson/" target="_blank" rel="noopener">Full Bio at gk-music.com ↗</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ld-footer">
+        <p>Rhythm Library System interactive app &mdash; companion to <a href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">The Rhythm Library System</a> by Gordy Knudtson / GK Music &nbsp;|&nbsp; <button class="ld-footer-link" @onclick='() => Nav.NavigateTo("/")'>Launch App</button></p>
+    </footer>
+
+</div>
