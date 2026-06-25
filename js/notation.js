@@ -124,18 +124,16 @@ window.rhythmNotation = (() => {
     }
 
     function drawRhythmNote(ctx, noteType, x, staffY) {
-        const filled = noteType !== 'half' && noteType !== 'snare_fine';
+        const filled = noteType !== 'half';
         const rx = 5.5, ry = 3.8, stemTopY = staffY - 26;
-        if (noteType !== 'snare_fine') {
-            ctx.save(); ctx.translate(x, staffY); ctx.rotate(-12 * Math.PI / 180);
-            if (filled) {
-                ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI*2); ctx.fillStyle='#000'; ctx.fill();
-            } else {
-                ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI*2);
-                ctx.fillStyle='#fff'; ctx.fill(); ctx.strokeStyle='#000'; ctx.lineWidth=1.4; ctx.stroke();
-            }
-            ctx.restore();
+        ctx.save(); ctx.translate(x, staffY); ctx.rotate(-12 * Math.PI / 180);
+        if (filled) {
+            ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI*2); ctx.fillStyle='#000'; ctx.fill();
+        } else {
+            ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI*2);
+            ctx.fillStyle='#fff'; ctx.fill(); ctx.strokeStyle='#000'; ctx.lineWidth=1.4; ctx.stroke();
         }
+        ctx.restore();
         const stemX = x + rx - 1;
         ctx.strokeStyle = '#000'; ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.moveTo(stemX, staffY - 1); ctx.lineTo(stemX, stemTopY); ctx.stroke();
@@ -150,12 +148,6 @@ window.rhythmNotation = (() => {
         if (noteType === 'snare_fine') {
             ctx.save();
             ctx.strokeStyle = '#000';
-            ctx.lineWidth = 1.4;
-            ctx.beginPath();
-            ctx.moveTo(x-rx+1, staffY-ry+1); ctx.lineTo(x+rx-1, staffY+ry-1);
-            ctx.moveTo(x+rx-1, staffY-ry+1); ctx.lineTo(x-rx+1, staffY+ry-1);
-            ctx.stroke();
-            // Accent mark (>) above the note
             const aY = staffY - 31;
             ctx.lineWidth = 1.3; ctx.lineJoin = 'miter';
             ctx.beginPath();
