@@ -49,6 +49,21 @@ html, body {
     font-weight: bold;
 }
 
+/* ── Preview Banner ────────────────────────── */
+.rl-preview-banner {
+    background: #2979ff;
+    color: #fff;
+    text-align: center;
+    padding: 7px 16px;
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+.rl-preview-link {
+    color: #fff;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
 /* ── Controls ──────────────────────────────── */
 .rl-controls {
     display: flex;
