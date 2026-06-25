@@ -254,6 +254,58 @@ html, body {
     color: #3949ab;
     letter-spacing: 0.04em;
 }
+/* ── Practice Mode ─────────────────────────── */
+.rl-practice-toggle {
+    display: flex;
+    gap: 4px;
+}
+.rl-practice-btn {
+    padding: 3px 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border: 1.5px solid #3949ab;
+    border-radius: 4px;
+    background: transparent;
+    color: #3949ab;
+    cursor: pointer;
+}
+.rl-practice-btn-active {
+    background: #3949ab;
+    color: #fff;
+}
+.rl-practice-intro {
+    padding: 10px 4px 6px;
+    font-size: 0.8rem;
+    color: #555;
+    font-style: italic;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 8px;
+}
+.rl-practice-intro p { margin: 0; }
+.rl-practice-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.rl-practice-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #3949ab;
+    white-space: nowrap;
+    min-width: 68px;
+}
+.rl-practice-canvas-wrap {
+    flex: 1;
+    min-width: 0;
+}
+.rl-practice-play-btn {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 4px 10px;
+}
+
 .rl-notation-scroll {
     padding: 8px 12px;
     display: flex;

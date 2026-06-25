@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "RhythmLibraryWeb",
   "resources": {
-    "hash": "sha256-8SgV1MVYAdMf1QFm+KAg0GDeZbmK77EGgWudw16VMkU=",
+    "hash": "sha256-NoG7FDjDrGuAkprdHU8yUTh+0y3jLmXqF6J2rNbMxaA=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Components.uoznvx714w.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Web.t6o9gaadxb.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
@@ -35,8 +35,8 @@
       "System.Text.Encodings.Web.5fvutybsfe.wasm": "System.Text.Encodings.Web.wasm",
       "System.Text.Json.o372vs0eoe.wasm": "System.Text.Json.wasm",
       "System.Text.RegularExpressions.bidgyl3ygr.wasm": "System.Text.RegularExpressions.wasm",
-      "System.Private.CoreLib.df6q0l8ts9.wasm": "System.Private.CoreLib.wasm",
-      "RhythmLibraryWeb.cpc2ejy1sv.wasm": "RhythmLibraryWeb.wasm",
+      "System.Private.CoreLib.dfarb4gh87.wasm": "System.Private.CoreLib.wasm",
+      "RhythmLibraryWeb.zr09s24o0y.wasm": "RhythmLibraryWeb.wasm",
       "dotnet.js": "dotnet.js",
       "dotnet.native.qc8g39g30v.js": "dotnet.native.js",
       "dotnet.native.boem75ye5i.wasm": "dotnet.native.wasm",
@@ -61,7 +61,7 @@
     },
     "coreAssembly": {
       "System.Runtime.InteropServices.JavaScript.oi1p6xyhwl.wasm": "sha256-8B2R7FrmNIJy3i9dSdutuqyQYcH4RS4pd0ZYUpDCeDw=",
-      "System.Private.CoreLib.df6q0l8ts9.wasm": "sha256-9yhozf5D6lP4XbSYJFwMt4ChR9vvP210d5D/KsgxbTc="
+      "System.Private.CoreLib.dfarb4gh87.wasm": "sha256-d9eQlyI+Q0OktB9AXcfgyr4iS6ijRTB69e4//82XYrc="
     },
     "assembly": {
       "Microsoft.AspNetCore.Components.uoznvx714w.wasm": "sha256-kpi5nSkRi/ap+Y1PohhY/xulMEZLy+yQ8+XmvHhT/EI=",
@@ -95,7 +95,7 @@
       "System.Text.Encodings.Web.5fvutybsfe.wasm": "sha256-b1D9iqancTKd5GC+Q16oTee9+7nwx2XTbl9FazMU+MY=",
       "System.Text.Json.o372vs0eoe.wasm": "sha256-dH/dv2OL2dd8sr8SCrWSwejPd/tfF9Yv1RjCN8r6lN8=",
       "System.Text.RegularExpressions.bidgyl3ygr.wasm": "sha256-Yy7QzVY0TlgBj00FZwuvPRRWpwvw0gM6xOUeIKrkUHE=",
-      "RhythmLibraryWeb.cpc2ejy1sv.wasm": "sha256-0AZ5HFjUpv9l9jmE665cr1KkVAmLGy4zXXm1eVI8wq4="
+      "RhythmLibraryWeb.zr09s24o0y.wasm": "sha256-0W98FflnZOLaWAX3Zq+w3zEIigIdTmejwORFn76Y4X8="
     }
   },
   "cacheBootResources": true,
