@@ -148,7 +148,7 @@ window.rhythmNotation = (() => {
         if (noteType === 'snare_fine') {
             ctx.save();
             ctx.strokeStyle = '#000';
-            const aY = staffY - 31;
+            const aY = staffY - 32;
             ctx.lineWidth = 1.3; ctx.lineJoin = 'miter';
             ctx.beginPath();
             ctx.moveTo(x - 5, aY + 4); ctx.lineTo(x, aY - 4); ctx.lineTo(x + 5, aY + 4);
