@@ -156,7 +156,7 @@ window.rhythmNotation = (() => {
             ctx.moveTo(x+rx-1, staffY-ry+1); ctx.lineTo(x-rx+1, staffY+ry-1);
             ctx.stroke();
             // Accent mark (>) above the note
-            const aY = -20;
+            const aY = -5;
             ctx.lineWidth = 1.3; ctx.lineJoin = 'miter';
             ctx.beginPath();
             ctx.moveTo(x - 5, aY + 4); ctx.lineTo(x, aY - 4); ctx.lineTo(x + 5, aY + 4);
