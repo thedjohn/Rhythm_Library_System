@@ -1,0 +1,119 @@
+{
+  "Title": "GK 16ths V",
+  "DrumGroups": [
+    {
+      "Name": "snare_fine",
+      "Drums": [
+        {
+          "Drum": "snare",
+          "Limb": "RH",
+          "Accent": true
+        }
+      ]
+    },
+    {
+      "Name": "eighth",
+      "Drums": [
+        {
+          "Drum": "snare",
+          "Limb": "RH",
+          "Accent": true
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        }
+      ]
+    },
+    {
+      "Name": "quarter",
+      "Drums": [
+        {
+          "Drum": "snare",
+          "Limb": "RH",
+          "Accent": true
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        }
+      ]
+    },
+    {
+      "Name": "dotted_quarter",
+      "Drums": [
+        {
+          "Drum": "snare",
+          "Limb": "RH",
+          "Accent": true
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        }
+      ]
+    },
+    {
+      "Name": "half",
+      "Drums": [
+        {
+          "Drum": "snare",
+          "Limb": "RH",
+          "Accent": true
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        }
+      ]
+    }
+  ]
+}

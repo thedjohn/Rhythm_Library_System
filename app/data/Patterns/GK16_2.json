@@ -1,0 +1,114 @@
+{
+  "Title": "GK 16ths II",
+  "DrumGroups": [
+    {
+      "Name": "snare_fine",
+      "Drums": [
+        {
+          "Drum": "snare",
+          "Limb": "RH"
+        }
+      ]
+    },
+    {
+      "Name": "eighth",
+      "Drums": [
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        }
+      ]
+    },
+    {
+      "Name": "quarter",
+      "Drums": [
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        }
+      ]
+    },
+    {
+      "Name": "dotted_quarter",
+      "Drums": [
+        {
+          "Drum": "high_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        }
+      ]
+    },
+    {
+      "Name": "half",
+      "Drums": [
+        {
+          "Drum": "snare",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "snare",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "high_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "RH"
+        },
+        {
+          "Drum": "low_tom",
+          "Limb": "LH"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        },
+        {
+          "Drum": "kick",
+          "Limb": "RF"
+        }
+      ]
+    }
+  ]
+}
