@@ -3,32 +3,30 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rhythm Library System — Interactive Drum Pattern Trainer by Gordy Knudtson</title>
-    <meta name="description" content="The interactive companion to The Rhythm Library System by Gordy Knudtson. Practice 24 drumset pattern groups, build hand independence, and master rhythmic reading with live audio and music notation. Only $9.95." />
-    <meta name="keywords" content="rhythm library system, Gordy Knudtson, drum sticking patterns, hand independence, drum practice app, drumset patterns, snare drum method, music notation, percussion training, drum instruction book" />
+    <title>Rhythm Library System — Drum Pattern Method by Gordy Knudtson</title>
+    <meta name="description" content="The Rhythm Library System by Gordy Knudtson is a simplified drum method using the Syncopation book concept to create hundreds of sticking pattern combinations. Try the free interactive app and get the $9.95 PDF." />
+    <meta name="keywords" content="rhythm library system, Gordy Knudtson, drum sticking patterns, syncopation drum book, hand independence, drumset patterns, snare drum method, rudimental patterns, drum solo vocabulary, percussion training, beginner drummer, intermediate drummer, drum teacher" />
     <meta name="author" content="Gordy Knudtson / GK Music" />
     <link rel="canonical" href="https://www.rhythmlibrarysystem.com/" />
     <meta name="google-site-verification" content="nYj4hW1rzMocYdWR5S9UvE1qLHdSyyXcoAZYWT92Xsw" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.rhythmlibrarysystem.com/" />
-    <meta property="og:title" content="Rhythm Library System — Interactive Drum Pattern Trainer" />
-    <meta property="og:description" content="Practice 24 drumset pattern groups from The Rhythm Library System book by Gordy Knudtson. Free interactive app with live audio and music notation." />
+    <meta property="og:title" content="Rhythm Library System — Drum Pattern Method by Gordy Knudtson" />
+    <meta property="og:description" content="A simplified drum method creating hundreds of sticking pattern combinations. Free interactive app included — hear and see every pattern in action." />
     <meta property="og:site_name" content="Rhythm Library System" />
-
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Rhythm Library System — Interactive Drum Pattern Trainer" />
-    <meta name="twitter:description" content="Practice 24 drumset pattern groups from The Rhythm Library System book by Gordy Knudtson. Free interactive app with live audio and music notation." />
+    <meta name="twitter:title" content="Rhythm Library System — Drum Pattern Method by Gordy Knudtson" />
+    <meta name="twitter:description" content="A simplified drum method creating hundreds of sticking pattern combinations. Free interactive app included — hear and see every pattern in action." />
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: #f0f0f5; color: #222; }
 
-        /* Hero */
         .hero {
             background: linear-gradient(135deg, #0d1b3e 0%, #1a1a2e 60%, #0d2a4a 100%);
             color: #fff;
-            padding: 60px 24px 48px;
+            padding: 60px 24px 52px;
             text-align: center;
         }
         .hero-badge {
@@ -48,193 +46,156 @@
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 16px;
-            color: #fff;
         }
         .hero h1 span { color: #2979ff; }
+        .hero-sub {
+            font-size: 1.05rem;
+            color: #90caf9;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
             color: #b0c4de;
-            max-width: 640px;
-            margin: 0 auto 32px;
-            line-height: 1.7;
+            max-width: 660px;
+            margin: 0 auto 36px;
+            line-height: 1.75;
         }
-        .hero-btns {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
         .btn-primary {
-            background: #2979ff;
-            color: #fff;
-            text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            transition: background 0.15s;
-            display: inline-block;
+            background: #2979ff; color: #fff; text-decoration: none;
+            padding: 14px 32px; border-radius: 8px; font-size: 1rem; font-weight: 700;
+            transition: background 0.15s; display: inline-block;
         }
         .btn-primary:hover { background: #1565c0; }
         .btn-secondary {
-            background: rgba(255,255,255,0.12);
-            color: #fff;
-            text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            border: 2px solid rgba(255,255,255,0.3);
-            transition: background 0.15s;
-            display: inline-block;
+            background: rgba(255,255,255,0.12); color: #fff; text-decoration: none;
+            padding: 14px 32px; border-radius: 8px; font-size: 1rem; font-weight: 700;
+            border: 2px solid rgba(255,255,255,0.3); transition: background 0.15s; display: inline-block;
         }
         .btn-secondary:hover { background: rgba(255,255,255,0.22); }
 
-        /* What is it */
+        .audience-bar {
+            background: #2979ff;
+            color: #fff;
+            text-align: center;
+            padding: 14px 24px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+        .audience-bar span { opacity: 0.75; margin: 0 12px; }
+
         .section { max-width: 900px; margin: 0 auto; padding: 56px 24px; }
         .section-label {
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #2979ff;
-            margin-bottom: 10px;
+            font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em;
+            text-transform: uppercase; color: #2979ff; margin-bottom: 10px;
         }
         .section h2 {
-            font-size: clamp(1.4rem, 3vw, 2rem);
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: #111;
-            line-height: 1.3;
+            font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800;
+            margin-bottom: 20px; color: #111; line-height: 1.3;
         }
-        .section p {
+        .section p { font-size: 1rem; line-height: 1.85; color: #444; margin-bottom: 16px; max-width: 760px; }
+        .section p strong { color: #1a1a2e; }
+
+        .concept-box {
+            background: #e8eaf6;
+            border-left: 4px solid #2979ff;
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin: 24px 0;
             font-size: 1rem;
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 16px;
-            max-width: 720px;
+            line-height: 1.75;
+            color: #333;
+            font-style: italic;
         }
 
-        /* Features grid */
-        .features {
-            background: #fff;
-            padding: 56px 24px;
-        }
+        .features { background: #fff; padding: 56px 24px; }
         .features-inner { max-width: 900px; margin: 0 auto; }
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            margin-top: 36px;
+            gap: 24px; margin-top: 36px;
         }
         .feature-card {
-            background: #f8f9ff;
-            border-radius: 10px;
-            padding: 24px;
-            border: 1px solid #e8eaf6;
+            background: #f8f9ff; border-radius: 10px;
+            padding: 24px; border: 1px solid #e8eaf6;
         }
-        .feature-icon {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-        }
-        .feature-card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1a1a2e;
-        }
-        .feature-card p {
-            font-size: 0.88rem;
-            color: #555;
-            line-height: 1.6;
-        }
+        .feature-icon { font-size: 1.8rem; margin-bottom: 12px; }
+        .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #1a1a2e; }
+        .feature-card p { font-size: 0.88rem; color: #555; line-height: 1.6; }
 
-        /* How it works */
-        .steps { max-width: 900px; margin: 0 auto; padding: 56px 24px; }
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin-top: 36px;
-        }
-        .step {
-            text-align: center;
-            padding: 24px 16px;
-        }
-        .step-num {
-            width: 48px; height: 48px;
-            background: #2979ff;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin: 0 auto 16px;
-        }
-        .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: #1a1a2e; }
-        .step p { font-size: 0.88rem; color: #555; line-height: 1.6; }
-
-        /* Book CTA */
-        .book-cta {
+        .preview-section {
             background: linear-gradient(135deg, #0d1b3e 0%, #1a1a2e 60%, #0d2a4a 100%);
-            color: #fff;
             padding: 56px 24px;
             text-align: center;
         }
-        .book-cta-inner { max-width: 700px; margin: 0 auto; }
-        .book-price {
-            display: inline-block;
-            background: #2979ff;
-            color: #fff;
-            font-size: 1.5rem;
-            font-weight: 800;
-            padding: 8px 24px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        .preview-inner { max-width: 760px; margin: 0 auto; }
+        .preview-section h2 { font-size: clamp(1.4rem,3vw,2rem); font-weight: 800; color: #fff; margin-bottom: 16px; }
+        .preview-section p { color: #b0c4de; font-size: 1rem; line-height: 1.75; margin-bottom: 12px; }
+        .preview-section p strong { color: #fff; }
+        .preview-steps {
+            display: flex; gap: 16px; justify-content: center;
+            flex-wrap: wrap; margin: 32px 0;
         }
-        .book-cta h2 {
-            font-size: clamp(1.4rem, 3vw, 2rem);
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: #fff;
+        .preview-step {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 20px 24px;
+            text-align: left;
+            max-width: 220px;
         }
-        .book-cta p {
-            color: #b0c4de;
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 32px;
+        .preview-step-num {
+            width: 32px; height: 32px;
+            background: #2979ff; color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 800;
+            margin-bottom: 12px;
         }
-        .book-includes {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px 24px;
-            justify-content: center;
-            margin-bottom: 32px;
-            font-size: 0.88rem;
-            color: #90caf9;
-        }
-        .book-includes span::before { content: "✓ "; color: #2979ff; font-weight: 700; }
+        .preview-step h3 { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .preview-step p { font-size: 0.82rem; color: #90caf9; line-height: 1.5; margin: 0; }
 
-        /* App preview CTA */
-        .app-cta {
+        .book-cta {
             background: #fff;
             padding: 56px 24px;
             text-align: center;
-            border-top: 1px solid #e0e0e0;
         }
-        .app-cta-inner { max-width: 700px; margin: 0 auto; }
-        .app-cta h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; margin-bottom: 16px; color: #1a1a2e; }
-        .app-cta p { color: #555; font-size: 1rem; line-height: 1.7; margin-bottom: 32px; }
+        .book-cta-inner { max-width: 760px; margin: 0 auto; }
+        .book-price {
+            display: inline-block; background: #1a1a2e; color: #fff;
+            font-size: 1.4rem; font-weight: 800;
+            padding: 8px 24px; border-radius: 8px; margin-bottom: 20px;
+        }
+        .book-cta h2 { font-size: clamp(1.4rem,3vw,2rem); font-weight: 800; margin-bottom: 16px; color: #1a1a2e; }
+        .book-cta p { color: #555; font-size: 1rem; line-height: 1.75; margin-bottom: 16px; }
+        .book-includes {
+            display: flex; flex-wrap: wrap; gap: 10px 24px;
+            justify-content: center; margin: 24px 0 32px;
+            font-size: 0.88rem; color: #3949ab;
+        }
+        .book-includes span::before { content: "✓ "; color: #2979ff; font-weight: 700; }
 
-        /* Footer */
-        footer {
-            background: #0d1b3e;
-            color: #90caf9;
+        .who-section { background: #f0f0f5; padding: 56px 24px; }
+        .who-inner { max-width: 900px; margin: 0 auto; }
+        .who-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px; margin-top: 32px;
+        }
+        .who-card {
+            background: #fff; border-radius: 10px;
+            padding: 20px; border: 1px solid #e0e0e0;
             text-align: center;
-            padding: 24px;
-            font-size: 0.82rem;
+        }
+        .who-card .who-icon { font-size: 2rem; margin-bottom: 10px; }
+        .who-card h3 { font-size: 0.95rem; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+        .who-card p { font-size: 0.83rem; color: #666; line-height: 1.5; }
+
+        footer {
+            background: #0d1b3e; color: #90caf9;
+            text-align: center; padding: 24px; font-size: 0.82rem;
         }
         footer a { color: #2979ff; text-decoration: none; }
     </style>
@@ -243,31 +204,98 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="hero-badge">Free Interactive App</div>
-        <h1>Master Drum Patterns with the<br><span>Rhythm Library System</span></h1>
-        <p>The interactive companion to <strong style="color:#fff;">The Rhythm Library System</strong> by Gordy Knudtson — 24 drumset pattern groups, live audio playback, and music notation to build hand independence and rhythmic fluency.</p>
+        <div class="hero-badge">Free Interactive App + $9.95 Book</div>
+        <h1>The <span>Rhythm Library System</span><br>by Gordy Knudtson</h1>
+        <p class="hero-sub">Technique Development for Drums</p>
+        <p>A simplified method for developing fluent drumset and snare drum technique — creating hundreds of sticking pattern combinations within a musical framework. Try the free interactive app to preview the system in action, then get the full 83-page PDF.</p>
         <div class="hero-btns">
-            <a href="/app" class="btn-primary">Launch the App — Free</a>
+            <a href="/app" class="btn-primary">Try the Free App</a>
             <a href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener" class="btn-secondary">Get the Book — $9.95</a>
         </div>
     </section>
 
-    <!-- What is the Rhythm Library System -->
+    <!-- Audience bar -->
+    <div class="audience-bar">
+        Perfect for: <strong>Beginner Drummers</strong><span>|</span><strong>Intermediate Players</strong><span>|</span><strong>Advanced Drummers</strong><span>|</span><strong>Drum Teachers</strong><span>|</span><strong>Students</strong>
+    </div>
+
+    <!-- What is it -->
     <div style="background:#fff;">
         <div class="section">
-            <div class="section-label">About the Method</div>
-            <h2>What is the Rhythm Library System?</h2>
-            <p>The Rhythm Library System is an 83-page drum instruction method by <strong>Gordy Knudtson</strong> designed to build fluent technique on both drumset and snare drum within a musical context. It uses common rhythmic notation to create hundreds of different combinations of sticking pattern ideas.</p>
-            <p>Whether you're working on solo vocabulary, hand independence, or rhythmic reading fluency, the Rhythm Library System gives you a structured, progressive approach — moving through four essential note values (eighth, quarter, dotted quarter, and half notes) with 24 drumset pattern groups and 16 rudimental pattern groups.</p>
-            <p>This free interactive app lets you <strong>hear and see every pattern in action</strong> — with adjustable tempo, click track, and real-time music notation so you can practice along at your own pace.</p>
+            <div class="section-label">The Concept</div>
+            <h2>A smarter approach to drum pattern application</h2>
+            <p>The Rhythm Library System is a simplification and expansion of an idea that's been floating around the drum world for years. The concept: <strong>using the solo pages from the middle of the Syncopation book</strong> for sequencing a select group of rudimental patterns or drumset patterns. The goal: creating a flow of patterns which conforms to the rhythmic architecture of the solo page — a wall of sound containing a rhythmic melody.</p>
+            <div class="concept-box">
+                "In the past, when this idea was explained there were always eight patterns in a group — four patterns for the notes, and four patterns for the rests. Gordy discovered you could eliminate the rest patterns and still get the same results using just the note patterns — half note, dotted quarter, quarter note, and eighth note."
+            </div>
+            <p>To make pattern application even easier, Gordy created a catalog — or <strong>Library</strong> — of simple two and four bar rhythmic phrases which combine only two or three note values at a time: Half Notes &amp; Quarter Notes, Quarter Notes &amp; Eighth Notes, Half Notes, Dotted Quarter Notes, &amp; Quarter Notes, and more. These simpler combinations proved more useful and just as effective as applying all four patterns to more complicated rhythms.</p>
+            <p>The result is a system that is <strong>accessible to beginners, challenging for advanced players, and immediately useful for teachers</strong> looking for a structured approach to building student vocabulary.</p>
         </div>
     </div>
 
-    <!-- Features -->
+    <!-- Who is it for -->
+    <div class="who-section">
+        <div class="who-inner">
+            <div class="section-label" style="text-align:center;">Who It Is For</div>
+            <h2 style="text-align:center; font-size:clamp(1.4rem,3vw,2rem); font-weight:800; color:#111; margin-bottom:0;">Built for every level of drummer</h2>
+            <div class="who-grid">
+                <div class="who-card">
+                    <div class="who-icon">🥁</div>
+                    <h3>Beginners</h3>
+                    <p>Simple two-note combinations make the system approachable from day one — build confidence with each pattern group.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-icon">🎯</div>
+                    <h3>Intermediate Players</h3>
+                    <p>Expand your vocabulary and develop hand independence through progressive sticking pattern sequences.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-icon">⭐</div>
+                    <h3>Advanced Drummers</h3>
+                    <p>Apply the full library to complex rhythms and develop a cohesive solo vocabulary — a wall of sound with rhythmic melody.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-icon">📚</div>
+                    <h3>Teachers &amp; Students</h3>
+                    <p>A structured, reproducible method ideal for lesson plans. The interactive app makes demonstration instant.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App preview section -->
+    <div class="preview-section">
+        <div class="preview-inner">
+            <div style="display:inline-block; background:rgba(41,121,255,0.2); color:#90caf9; font-size:0.75rem; font-weight:800; letter-spacing:0.1em; padding:4px 14px; border-radius:20px; margin-bottom:20px; text-transform:uppercase;">Free Interactive Preview</div>
+            <h2>See and hear the system before you buy</h2>
+            <p>The free interactive app lets you <strong>experience the Rhythm Library System in action</strong> before purchasing the book. Select a pattern group, set your tempo, and hear how the sticking patterns flow against the rhythm sequence — exactly as the method is designed to be practiced.</p>
+            <p>This is not just a demo — it's a <strong>fully working practice tool</strong> you can use alongside the book every time you sit down at the kit.</p>
+            <div class="preview-steps">
+                <div class="preview-step">
+                    <div class="preview-step-num">1</div>
+                    <h3>Choose a Page</h3>
+                    <p>Select a rhythm exercise like Three Camps to load the notation sequence.</p>
+                </div>
+                <div class="preview-step">
+                    <div class="preview-step-num">2</div>
+                    <h3>Choose a Pattern</h3>
+                    <p>Pick a GK 16ths sticking pattern and see the drum notation in real time.</p>
+                </div>
+                <div class="preview-step">
+                    <div class="preview-step-num">3</div>
+                    <h3>Play &amp; Practice</h3>
+                    <p>Press Play or click any single measure to loop it at your tempo.</p>
+                </div>
+            </div>
+            <a href="/app" class="btn-primary" style="font-size:1.05rem; padding:16px 40px;">Launch the Free App</a>
+        </div>
+    </div>
+
+    <!-- App features -->
     <div class="features">
         <div class="features-inner">
             <div class="section-label" style="text-align:center;">App Features</div>
-            <h2 style="text-align:center; font-size:clamp(1.4rem,3vw,2rem); font-weight:800; color:#111; margin-bottom:0;">Everything you need to practice</h2>
+            <h2 style="text-align:center; font-size:clamp(1.4rem,3vw,2rem); font-weight:800; color:#111; margin-bottom:0;">A complete practice companion</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🥁</div>
@@ -277,7 +305,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🎼</div>
                     <h3>Music Notation</h3>
-                    <p>Full drum notation rendered in real time for every pattern and rhythm sequence — read along as it plays.</p>
+                    <p>Full drum notation rendered in real time for every pattern and rhythm sequence with a live playhead indicator.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
@@ -287,42 +315,17 @@
                 <div class="feature-card">
                     <div class="feature-icon">⏱️</div>
                     <h3>Adjustable Tempo</h3>
-                    <p>Set your BPM with a slider and practice at any speed. The metronome click track keeps you in time.</p>
+                    <p>Set your BPM with a slider. The metronome click track keeps you in time at any speed.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎲</div>
                     <h3>Humanize Mode</h3>
-                    <p>Adds subtle timing and velocity variation to the drum pattern so it feels musical rather than mechanical.</p>
+                    <p>Adds subtle timing and velocity variation so the pattern feels musical rather than mechanical.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Works in Browser</h3>
-                    <p>No download or install required. Works on desktop and tablet — just open and play.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- How it works -->
-    <div style="background:#f0f0f5;">
-        <div class="steps">
-            <div class="section-label" style="text-align:center;">How It Works</div>
-            <h2 style="text-align:center; font-size:clamp(1.4rem,3vw,2rem); font-weight:800; color:#111; margin-bottom:0;">Three steps to better drumming</h2>
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-num">1</div>
-                    <h3>Choose a Page</h3>
-                    <p>Select a rhythm exercise like Three Camps from the Page dropdown to load the notation sequence.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">2</div>
-                    <h3>Choose a Pattern</h3>
-                    <p>Pick a GK 16ths sticking pattern from the Pattern dropdown. The pattern column shows the notes for each note value group.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">3</div>
-                    <h3>Play and Practice</h3>
-                    <p>Press Play for a full run-through with count-in, or click any individual measure to loop it at tempo.</p>
+                    <div class="feature-icon">💻</div>
+                    <h3>No Download Needed</h3>
+                    <p>Runs entirely in your browser. Works on desktop and tablet — open and play instantly.</p>
                 </div>
             </div>
         </div>
@@ -331,32 +334,25 @@
     <!-- Book CTA -->
     <div class="book-cta">
         <div class="book-cta-inner">
-            <div class="book-price">$9.95 PDF</div>
-            <h2>Get The Rhythm Library System Book</h2>
-            <p>The full 83-page digital PDF by Gordy Knudtson includes 24 drumset pattern groups, 16 rudimental pattern groups, and a complete rhythmic phrase library — everything you need to build a cohesive solo vocabulary and master hand independence.</p>
+            <div class="book-price">$9.95 — Digital PDF</div>
+            <h2>Get the Full Rhythm Library System Book</h2>
+            <p>The 83-page PDF by <strong>Gordy Knudtson</strong> is the complete method — everything the interactive app is built from, with the full catalog of pattern groups, rudimental patterns, and rhythmic phrase library ready to use in your practice sessions and lessons.</p>
+            <p>Once you understand how the system works, you can easily apply your own custom pattern group ideas to expand it indefinitely.</p>
             <div class="book-includes">
                 <span>83-page digital PDF</span>
                 <span>24 drumset pattern groups</span>
                 <span>16 rudimental pattern groups</span>
                 <span>Rhythmic phrase library</span>
                 <span>Instant download</span>
+                <span>Apply your own patterns</span>
             </div>
             <a href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener" class="btn-primary" style="font-size:1.1rem; padding:16px 40px;">Buy the Book at gk-music.com ↗</a>
         </div>
     </div>
 
-    <!-- App CTA -->
-    <div class="app-cta">
-        <div class="app-cta-inner">
-            <h2>Ready to practice?</h2>
-            <p>The interactive app is completely free. Select a pattern, set your tempo, and start building hand independence today.</p>
-            <a href="/app" class="btn-primary" style="font-size:1.1rem; padding:16px 40px;">Launch the Free App</a>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer>
-        <p>Rhythm Library System interactive app &mdash; companion to <a href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">The Rhythm Library System</a> by Gordy Knudtson / GK Music</p>
+        <p>Rhythm Library System interactive app &mdash; companion to <a href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">The Rhythm Library System</a> by Gordy Knudtson / GK Music &nbsp;|&nbsp; <a href="/app">Launch App</a></p>
     </footer>
 
 </body>
