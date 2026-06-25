@@ -123,25 +123,57 @@
 
         <!-- RIGHT: Rhythm Sequence -->
         <div class="rl-notation-wrapper">
-            <div class="rl-notation-header">
+            <div class="rl-notation-header" style="display:flex; align-items:center; justify-content:space-between;">
                 <span>RHYTHM SEQUENCE &mdash; @_selectedRhythm</span>
+                @if (_rhythmData?.PracticeMeasures?.Count > 0)
+                {
+                    <div class="rl-practice-toggle">
+                        <button class="rl-practice-btn @(_practiceMode ? "" : "rl-practice-btn-active")" @onclick='() => SetPracticeMode(false)'>Full</button>
+                        <button class="rl-practice-btn @(_practiceMode ? "rl-practice-btn-active" : "")" @onclick='() => SetPracticeMode(true)'>Practice</button>
+                    </div>
+                }
             </div>
             <div class="rl-notation-scroll">
                 @if (_rhythmData != null)
                 {
-                    int total = _rhythmData.Rhythm.Count;
-                    int rowNum = 0;
-                    for (int row = 0; row < total; row += 4)
+                    @if (_practiceMode && _rhythmData.PracticeMeasures?.Count > 0)
                     {
-                        var r = rowNum;
-                        var rowStart = row;
-                        bool rowActive  = (_activeRow >= row && _activeRow < row + 4);
-                        bool rowLooping = (_loopingMeasure >= row && _loopingMeasure < row + 4);
-                        <div class="rl-staff-row @(rowLooping ? "rl-row-looping" : rowActive ? "rl-row-active" : "") rl-staff-row-clickable"
-                             @onclick="e => PlayMeasureRowAsync(rowStart, e)">
-                            <canvas id="staffrow-@r" class="rl-staff-canvas"></canvas>
+                        <div class="rl-practice-intro">
+                            <p>These are the unique rhythmic patterns that make up the full sequence. Master each one individually to build the muscle memory needed to play the complete page. <strong>Start at a slow tempo and gradually increase speed</strong> until you can play each pattern cleanly at full performance tempo.</p>
                         </div>
-                        rowNum++;
+                        @for (int pi = 0; pi < _rhythmData.PracticeMeasures.Count; pi++)
+                        {
+                            var measureIdx = _rhythmData.PracticeMeasures[pi] - 1;
+                            var pIdx = pi;
+                            bool isLooping = _loopingMeasure == measureIdx;
+                            <div class="rl-practice-row">
+                                <div class="rl-practice-label">Measure @_rhythmData.PracticeMeasures[pIdx]</div>
+                                <div class="rl-practice-canvas-wrap @(isLooping ? "rl-row-looping" : "")">
+                                    <canvas id="practicerow-@pIdx" class="rl-staff-canvas"></canvas>
+                                </div>
+                                <button class="@(isLooping ? "rl-btn-stop" : "rl-btn-play") rl-practice-play-btn"
+                                        @onclick="() => TogglePracticeMeasureAsync(measureIdx)">
+                                    @(isLooping ? "■ Stop" : "▶ Play")
+                                </button>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        int total = _rhythmData.Rhythm.Count;
+                        int rowNum = 0;
+                        for (int row = 0; row < total; row += 4)
+                        {
+                            var r = rowNum;
+                            var rowStart = row;
+                            bool rowActive  = (_activeRow >= row && _activeRow < row + 4);
+                            bool rowLooping = (_loopingMeasure >= row && _loopingMeasure < row + 4);
+                            <div class="rl-staff-row @(rowLooping ? "rl-row-looping" : rowActive ? "rl-row-active" : "") rl-staff-row-clickable"
+                                 @onclick="e => PlayMeasureRowAsync(rowStart, e)">
+                                <canvas id="staffrow-@r" class="rl-staff-canvas"></canvas>
+                            </div>
+                            rowNum++;
+                        }
                     }
                 }
             </div>
@@ -186,10 +218,12 @@
     private ThreeCampsData _rhythmData;
     private GK16Data _patternData;
 
+    private bool _practiceMode = false;
+
     private bool _isPlaying;
     private bool _isPaused;
     private string _status = "Ready";
-    private int _tempo = 120;
+    private int _tempo = 100;
     private bool _clickEnabled = true;
     private bool _patternEnabled = true;
     private bool _humanizeEnabled = false;
@@ -218,6 +252,7 @@
     private double _phNoteStartMs  = 0;
     private double _phNoteDurMs    = 0;
     private System.Diagnostics.Stopwatch _clock;
+    private string _phRowCanvasPrefix = "staffrow";  // "staffrow" or "practicerow"
 
     // Pattern highlight state (swept by 30fps loop)
     private int    _phPatCanvas    = -1;   // canvas index (-1 = none)
@@ -272,6 +307,26 @@
     private async Task DrawAllMeasuresAsync()
     {
         if (_rhythmData == null) return;
+
+        if (_practiceMode && _rhythmData.PracticeMeasures?.Count > 0)
+        {
+            for (int pi = 0; pi < _rhythmData.PracticeMeasures.Count; pi++)
+            {
+                int mi    = _rhythmData.PracticeMeasures[pi] - 1;
+                var patId = _rhythmData.Rhythm[mi];
+                var pat   = _rhythmData.RhythmPatterns.FirstOrDefault(p => p.Id == patId);
+                var notes = new List<List<string>> { pat?.Notes ?? new List<string>() };
+                var active = new List<bool> { mi == _activeRow };
+                try
+                {
+                    await JS.InvokeVoidAsync("rhythmNotation.drawStaffRow",
+                        $"practicerow-{pi}", notes, active, true);
+                }
+                catch { }
+            }
+            return;
+        }
+
         int total  = _rhythmData.Rhythm.Count;
         int rowNum = 0;
         for (int row = 0; row < total; row += 4)
@@ -464,6 +519,126 @@
         }
     }
 
+    private void SetPracticeMode(bool on)
+    {
+        Stop();
+        _practiceMode = on;
+        _tempo = on ? 60 : 100;
+        StateHasChanged();
+        _ = Task.Delay(50).ContinueWith(_ => InvokeAsync(DrawAllMeasuresAsync));
+    }
+
+    private async Task TogglePracticeMeasureAsync(int measureIdx)
+    {
+        if (_rhythmData == null || _patternData == null) return;
+
+        if (_isPlaying && _loopingMeasure == measureIdx)
+        {
+            _stopLoopAfterCurrent = true;
+            _status = "Finishing loop…";
+            StateHasChanged();
+            return;
+        }
+
+        if (_isPlaying) { _cts?.Cancel(); await Task.Delay(80); }
+
+        try { await AudioService.InitializeAsync(); } catch { }
+        AudioService.SetVolume(_patternVol);
+        AudioService.SetClickVolume(_clickVol);
+
+        _isPlaying            = true;
+        _isPaused             = false;
+        _loopingMeasure       = measureIdx;
+        _stopLoopAfterCurrent = false;
+        _cts                  = new CancellationTokenSource();
+        var token             = _cts.Token;
+
+        // Find the practice index for this measure so canvas ID matches
+        int pracIdx = _rhythmData.PracticeMeasures?.IndexOf(measureIdx + 1) ?? 0;
+
+        _activeRow           = measureIdx;
+        _phRowCanvasPrefix   = "practicerow";
+        _needsRedraw         = true;
+        StateHasChanged();
+        try { await DrawAllMeasuresAsync(); } catch { }
+
+        try
+        {
+            double beatMs = 60000.0 / _tempo;
+            var kit       = new DrumKit(_patternData);
+
+            var rhPat     = _rhythmData.RhythmPatterns.FirstOrDefault(p => p.Id == _rhythmData.Rhythm[measureIdx]);
+            var notes     = rhPat?.Notes ?? new List<string> { "quarter", "quarter", "quarter", "quarter" };
+            double totalB = notes.Sum(n => Beats(n));
+
+            _clock        = System.Diagnostics.Stopwatch.StartNew();
+            var clickTask = RunClickTrackAsync(beatMs, token);
+            var phTask    = RunPlayheadAsync(token);
+
+            while (!_stopLoopAfterCurrent && !token.IsCancellationRequested)
+            {
+                _clock = System.Diagnostics.Stopwatch.StartNew();
+                _status = "Looping… (click Play again to stop)";
+                await InvokeAsync(StateHasChanged);
+
+                double cumBeats  = 0;
+                double scheduled = _clock.Elapsed.TotalMilliseconds;
+
+                foreach (var noteType in notes)
+                {
+                    if (token.IsCancellationRequested) break;
+
+                    double noteDur = beatMs * Beats(noteType);
+                    double wait    = scheduled - _clock.Elapsed.TotalMilliseconds;
+                    if (wait > 1) await Task.Delay((int)wait, token);
+
+                    _phRow          = pracIdx;
+                    _phRowFracStart = cumBeats / totalB;
+                    _phRowFracEnd   = Math.Min(1.0, (cumBeats + Beats(noteType)) / totalB);
+                    _phNoteDurMs    = noteDur;
+                    _phNoteStartMs  = _clock.Elapsed.TotalMilliseconds;
+
+                    if (!string.IsNullOrEmpty(noteType) && !noteType.EndsWith("_tied") && _patternEnabled)
+                    {
+                        var group = kit.GetDrumGroupByName(NoteTypeToKey(noteType));
+                        if (group?.Drums != null)
+                        {
+                            int cgIdx     = kit.DrumGroups.Where(g => g.Name != "snare_fine").ToList().IndexOf(group);
+                            _phPatCanvas  = cgIdx;
+                            _phPatStartMs = _clock.Elapsed.TotalMilliseconds;
+                            _phPatDurMs   = noteDur;
+                            _ = PlayDrumGroupAsync(group, beatMs, kit.IsTriplet, kit.IsThirtySecond, token);
+                        }
+                    }
+
+                    scheduled += noteDur;
+                    cumBeats  += Beats(noteType);
+                }
+
+                double finalWait = scheduled - _clock.Elapsed.TotalMilliseconds;
+                if (finalWait > 1) await Task.Delay((int)finalWait, token);
+            }
+
+            _cts.Cancel();
+            try { await clickTask; } catch { }
+            try { await phTask;    } catch { }
+        }
+        catch (OperationCanceledException) { }
+        finally
+        {
+            _phRow               = -1;
+            _phPatCanvas         = -1;
+            _phRowCanvasPrefix   = "staffrow";
+            _isPlaying           = false;
+            _isPaused            = false;
+            _activeRow           = -1;
+            _loopingMeasure      = -1;
+            _needsRedraw         = true;
+            await InvokeAsync(StateHasChanged);
+            try { await DrawAllMeasuresAsync(); } catch { }
+        }
+    }
+
     private async Task PlayMeasureRowAsync(int rowStart, MouseEventArgs e)
     {
         if (_rhythmData == null || _patternData == null) return;
@@ -601,7 +776,7 @@
                 {
                     double t       = Math.Clamp((elapsed - _phNoteStartMs) / _phNoteDurMs, 0.0, 1.0);
                     double rowFrac = _phRowFracStart + t * (_phRowFracEnd - _phRowFracStart);
-                    try { await JS.InvokeVoidAsync("rhythmNotation.updatePlayhead", $"staffrow-{row}", rowFrac); }
+                    try { await JS.InvokeVoidAsync("rhythmNotation.updatePlayhead", $"{_phRowCanvasPrefix}-{row}", rowFrac); }
                     catch { }
                 }
 

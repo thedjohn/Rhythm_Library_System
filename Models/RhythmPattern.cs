@@ -22,7 +22,8 @@ namespace RhythmLibraryWeb.Models
         public int    Page  { get; set; }
         public List<RhythmPattern>  RhythmPatterns { get; set; } = new List<RhythmPattern>();
         public List<int>            Rhythm         { get; set; } = new List<int>();
-        public List<RhythmGroup>    Groups         { get; set; }
+        public List<RhythmGroup>    Groups          { get; set; }
+        public List<int>            PracticeMeasures { get; set; } = new List<int>();
     }
 }
 
