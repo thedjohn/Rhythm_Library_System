@@ -348,6 +348,16 @@ html, body {
     margin-top: 12px;
     border-top: 3px solid #2979ff;
 }
+.rl-footer-contact {
+    text-align: center;
+    padding: 0 24px 16px;
+    font-size: 0.85rem;
+    color: #90caf9;
+}
+.rl-footer-contact a {
+    color: #90caf9;
+    text-decoration: underline;
+}
 .rl-footer-inner {
     max-width: 1100px;
     margin: 0 auto;
