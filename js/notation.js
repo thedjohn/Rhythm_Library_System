@@ -32,6 +32,7 @@ window.rhythmNotation = (() => {
 
         const nm = measuresNotes.length;
         if (nm === 0) return;
+        const noteStartOffset = 10;
 
         const staffY   = H * 0.55;
         const clefW    = 22;
@@ -85,14 +86,13 @@ window.rhythmNotation = (() => {
         // Notes + beat numbers
         for (let m = 0; m < nm; m++) {
             const notes    = measuresNotes[m] || [];
-            const mL       = L + m * mW + 6;
-            const mR       = L + (m + 1) * mW - 6;
-            const noteArea = mR - mL;
-            const totalB   = notes.reduce((s, n) => s + beats(n), 0) || 4;
+            const noteStart = L + m * mW + noteStartOffset;
+            const noteSpan  = mW - noteStartOffset;
+            const totalB    = notes.reduce((s, n) => s + beats(n), 0) || 4;
             let bAcc = 0;
             for (const n of notes) {
                 if (!n) { bAcc += 1; continue; }
-                const nx = mL + (bAcc / totalB) * noteArea;
+                const nx = noteStart + (bAcc / totalB) * noteSpan;
                 if (!n.endsWith('_tied')) drawRhythmNote(ctx, n.endsWith('_tied') ? n.slice(0,-5) : n, nx, staffY);
                 bAcc += beats(n);
             }
@@ -103,7 +103,7 @@ window.rhythmNotation = (() => {
                 if (n && !n.endsWith('_tied')) {
                     const key = n.endsWith('_tied') ? n.slice(0,-5) : n;
                     const lbl = patNum[key];
-                    if (lbl) ctx.fillText(lbl, mL + (ba / totalB) * noteArea, staffY + 20);
+                    if (lbl) ctx.fillText(lbl, noteStart + (ba / totalB) * noteSpan, staffY + 20);
                 }
                 ba += beats(n);
             }
@@ -111,7 +111,7 @@ window.rhythmNotation = (() => {
 
         // Red playhead line
         if (playheadFrac != null && playheadFrac >= 0) {
-            const phX = L + (playheadFrac / nm) * staffW;
+            const phX = L + (playheadFrac / nm) * staffW + noteStartOffset;
             ctx.strokeStyle = '#e53935'; ctx.lineWidth = 2; ctx.lineCap = 'round';
             ctx.beginPath(); ctx.moveTo(phX, staffY - 22); ctx.lineTo(phX, staffY + 10); ctx.stroke();
         }
