@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "RhythmLibraryWeb",
   "resources": {
-    "hash": "sha256-64CYSL/f1dhq4Zp+7ua9QDNxcUaaszaJDpLbagpcVaw=",
+    "hash": "sha256-cGgpkVn0cUOMGdG/bmb8jAWsshB6aIOOOFKn+EdEHm0=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Components.uoznvx714w.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Web.rj3gk3rede.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
@@ -36,7 +36,7 @@
       "System.Text.Json.o372vs0eoe.wasm": "System.Text.Json.wasm",
       "System.Text.RegularExpressions.bidgyl3ygr.wasm": "System.Text.RegularExpressions.wasm",
       "System.Private.CoreLib.dfarb4gh87.wasm": "System.Private.CoreLib.wasm",
-      "RhythmLibraryWeb.16za0ksfa7.wasm": "RhythmLibraryWeb.wasm",
+      "RhythmLibraryWeb.yaf3209ycy.wasm": "RhythmLibraryWeb.wasm",
       "dotnet.js": "dotnet.js",
       "dotnet.native.qc8g39g30v.js": "dotnet.native.js",
       "dotnet.native.boem75ye5i.wasm": "dotnet.native.wasm",
@@ -95,7 +95,7 @@
       "System.Text.Encodings.Web.5fvutybsfe.wasm": "sha256-b1D9iqancTKd5GC+Q16oTee9+7nwx2XTbl9FazMU+MY=",
       "System.Text.Json.o372vs0eoe.wasm": "sha256-dH/dv2OL2dd8sr8SCrWSwejPd/tfF9Yv1RjCN8r6lN8=",
       "System.Text.RegularExpressions.bidgyl3ygr.wasm": "sha256-Yy7QzVY0TlgBj00FZwuvPRRWpwvw0gM6xOUeIKrkUHE=",
-      "RhythmLibraryWeb.16za0ksfa7.wasm": "sha256-iSDO9oBRmhMh8xT4PwkPcZqk2VMKrWbQsXeDicjuF1w="
+      "RhythmLibraryWeb.yaf3209ycy.wasm": "sha256-OsIVYKHtmJQvIkid0IYhCxSjqenjU1XJQCcYTRVzDm8="
     }
   },
   "cacheBootResources": true,

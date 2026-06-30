@@ -24,6 +24,13 @@
     <meta name="twitter:description" content="Practice drum sticking patterns and build hand independence with this interactive companion to the Rhythm Library System book by GK Music." />
 
     <base href="/" />
+    <script>
+        // GitHub Pages SPA routing — restore path stored by 404.html
+        (function() {
+            var p = new URLSearchParams(window.location.search).get('p');
+            if (p) { window.history.replaceState(null, null, p); }
+        })();
+    </script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FCG7CNYZEW"></script>
     <script>
