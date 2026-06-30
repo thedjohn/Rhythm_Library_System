@@ -1,10 +1,10 @@
 {
   "mainAssemblyName": "RhythmLibraryWeb",
   "resources": {
-    "hash": "sha256-SJ+A4Ww9c2+vu9KVUq+adekzSlUcLOtj9fWjzZLIuOY=",
+    "hash": "sha256-nS1/CB4izFR/2k9Aub3LjQ1bxas6IehP2WkjQj2yr9o=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Components.uoznvx714w.wasm": "Microsoft.AspNetCore.Components.wasm",
-      "Microsoft.AspNetCore.Components.Web.t6o9gaadxb.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
+      "Microsoft.AspNetCore.Components.Web.rj3gk3rede.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
       "Microsoft.AspNetCore.Components.WebAssembly.mkpbwczbcp.wasm": "Microsoft.AspNetCore.Components.WebAssembly.wasm",
       "Microsoft.Extensions.Configuration.2qcekzlwww.wasm": "Microsoft.Extensions.Configuration.wasm",
       "Microsoft.Extensions.Configuration.Abstractions.rxlfvecwja.wasm": "Microsoft.Extensions.Configuration.Abstractions.wasm",
@@ -36,7 +36,7 @@
       "System.Text.Json.o372vs0eoe.wasm": "System.Text.Json.wasm",
       "System.Text.RegularExpressions.bidgyl3ygr.wasm": "System.Text.RegularExpressions.wasm",
       "System.Private.CoreLib.dfarb4gh87.wasm": "System.Private.CoreLib.wasm",
-      "RhythmLibraryWeb.dycwszfo2l.wasm": "RhythmLibraryWeb.wasm",
+      "RhythmLibraryWeb.9f3vlin6an.wasm": "RhythmLibraryWeb.wasm",
       "dotnet.js": "dotnet.js",
       "dotnet.native.qc8g39g30v.js": "dotnet.native.js",
       "dotnet.native.boem75ye5i.wasm": "dotnet.native.wasm",
@@ -65,7 +65,7 @@
     },
     "assembly": {
       "Microsoft.AspNetCore.Components.uoznvx714w.wasm": "sha256-kpi5nSkRi/ap+Y1PohhY/xulMEZLy+yQ8+XmvHhT/EI=",
-      "Microsoft.AspNetCore.Components.Web.t6o9gaadxb.wasm": "sha256-S8X3TxtGkXu5qnCWYzxLWyhQT7OrdraDCV/ZlRPkGIs=",
+      "Microsoft.AspNetCore.Components.Web.rj3gk3rede.wasm": "sha256-9yWvAZV83ShNFlTXUcvqeM/B8Tv0u/ikqDBZJ8VS+Lc=",
       "Microsoft.AspNetCore.Components.WebAssembly.mkpbwczbcp.wasm": "sha256-yuk3jNlC3nnBLJ+lZAH3U8nKItG2uaaPSXAZ1cC3/rc=",
       "Microsoft.Extensions.Configuration.2qcekzlwww.wasm": "sha256-FngMKPqjYJ/ug7cPfNm4X9SuncFTFku8vfzirt9fM9M=",
       "Microsoft.Extensions.Configuration.Abstractions.rxlfvecwja.wasm": "sha256-z1OibzQV3p8to5tLTuGiSt6hnl8ywdnIVPVL7FsWICw=",
@@ -95,7 +95,7 @@
       "System.Text.Encodings.Web.5fvutybsfe.wasm": "sha256-b1D9iqancTKd5GC+Q16oTee9+7nwx2XTbl9FazMU+MY=",
       "System.Text.Json.o372vs0eoe.wasm": "sha256-dH/dv2OL2dd8sr8SCrWSwejPd/tfF9Yv1RjCN8r6lN8=",
       "System.Text.RegularExpressions.bidgyl3ygr.wasm": "sha256-Yy7QzVY0TlgBj00FZwuvPRRWpwvw0gM6xOUeIKrkUHE=",
-      "RhythmLibraryWeb.dycwszfo2l.wasm": "sha256-lQE3LoBL8xo3JbioHhM+rfUzZk9S89it349JKWyKZZs="
+      "RhythmLibraryWeb.9f3vlin6an.wasm": "sha256-FdCV5aRjNOFiIeOqsal/j7VXB0nh0jPE+Kyo1KcLcyY="
     }
   },
   "cacheBootResources": true,
