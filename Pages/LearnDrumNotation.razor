@@ -1,0 +1,158 @@
+@page "/learn-drum-notation"
+@inject NavigationManager Nav
+
+<PageTitle>Learn Drum Notation — How to Read Drum Sheet Music | Rhythm Library System</PageTitle>
+<HeadContent>
+    <meta name="description" content="Learn how to read drum notation — note values, drum staff, time signatures, and accents explained clearly for beginners. Practice with the free Rhythm Library System app." />
+    <link rel="canonical" href="https://www.rhythmlibrarysystem.com/learn-drum-notation" />
+    <meta property="og:title" content="Learn Drum Notation | Rhythm Library System" />
+    <meta property="og:description" content="A beginner-friendly guide to reading drum sheet music — note values, drum staff layout, time signatures, and accents. Practice with the free interactive app." />
+    <meta property="og:url" content="https://www.rhythmlibrarysystem.com/learn-drum-notation" />
+</HeadContent>
+
+<div class="dn-page">
+<SeoNav />
+
+    <section class="dn-hero">
+        <div class="dn-breadcrumb"><a href="/landing">Rhythm Library System</a> › Learn Drum Notation</div>
+        <h1>Learn Drum Notation</h1>
+        <p class="dn-hero-sub">How to Read Drum Sheet Music</p>
+        <p class="dn-hero-desc">Reading drum notation is a skill that makes every other aspect of drumming easier — practice, communication, and musical growth. This guide walks you through the fundamentals step by step.</p>
+        <button class="dn-btn-primary" @onclick='() => Nav.NavigateTo("/")'>Practice Reading Notation in the Free App →</button>
+    </section>
+
+    <div class="dn-white">
+        <div class="dn-section">
+            <div class="dn-label">Why Learn to Read Drum Notation?</div>
+            <h2>Reading opens doors that playing by ear alone cannot</h2>
+            <p>Many great drummers play entirely by ear. But the ability to read notation gives you access to a world of written exercises, methods, and musical ideas that would otherwise be unavailable to you.</p>
+            <p>More practically, reading notation while you practice — as the Rhythm Library System app displays — <strong>builds the connection between what you see and what you play</strong>. That connection is one of the most valuable skills a drummer can develop.</p>
+            <p>You do not need to become a sight-reading specialist. Even a basic understanding of drum notation will make you a more complete musician.</p>
+        </div>
+    </div>
+
+    <div class="dn-gray">
+        <div class="dn-section">
+            <div class="dn-label">The Drum Staff</div>
+            <h2>Where each instrument appears on the staff</h2>
+            <p>Drum notation uses a standard five-line staff, but each line and space represents a different part of the drumset rather than a musical pitch.</p>
+            <div class="dn-staff-grid">
+                <div class="dn-staff-card"><div class="dn-staff-icon">🥁</div><h3>Snare Drum</h3><p>Written in the third space from the bottom. The most common note in drum notation.</p></div>
+                <div class="dn-staff-card"><div class="dn-staff-icon">🦶</div><h3>Bass Drum</h3><p>Written below the staff with a note stem pointing down. Played with the right foot on the kick pedal.</p></div>
+                <div class="dn-staff-card"><div class="dn-staff-icon">🎵</div><h3>Hi-Hat</h3><p>Written above the staff with an X notehead. Closed hi-hat is a standard X; open hi-hat has a circle above it.</p></div>
+                <div class="dn-staff-card"><div class="dn-staff-icon">🔔</div><h3>Ride Cymbal</h3><p>Written above the staff with an X notehead, typically on the top line or above it.</p></div>
+                <div class="dn-staff-card"><div class="dn-staff-icon">🥁</div><h3>Hi Tom</h3><p>Written on the top line of the staff or just above it. The highest-pitched tom.</p></div>
+                <div class="dn-staff-card"><div class="dn-staff-icon">🥁</div><h3>Floor Tom</h3><p>Written below the snare, on the first line or first space from the bottom.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dn-white">
+        <div class="dn-section">
+            <div class="dn-label">Note Values</div>
+            <h2>How long each note lasts</h2>
+            <p>Every note in drum notation has a value that tells you how long it lasts relative to the beat. In 4/4 time — the most common time signature in drumming — there are four beats per measure.</p>
+            <div class="dn-note-list">
+                <div class="dn-note-row">
+                    <div class="dn-note-name">Whole Note</div>
+                    <div class="dn-note-desc">Lasts four full beats. In 4/4 time, one whole note fills an entire measure.</div>
+                </div>
+                <div class="dn-note-row">
+                    <div class="dn-note-name">Half Note</div>
+                    <div class="dn-note-desc">Lasts two beats. Two half notes fill one measure of 4/4.</div>
+                </div>
+                <div class="dn-note-row">
+                    <div class="dn-note-name">Quarter Note</div>
+                    <div class="dn-note-desc">Lasts one beat. Four quarter notes fill one measure of 4/4. This is the most common note value.</div>
+                </div>
+                <div class="dn-note-row">
+                    <div class="dn-note-name">Eighth Note</div>
+                    <div class="dn-note-desc">Lasts half a beat. Eight eighth notes fill one measure of 4/4. Counted as 1-and-2-and-3-and-4-and.</div>
+                </div>
+                <div class="dn-note-row">
+                    <div class="dn-note-name">Dotted Quarter</div>
+                    <div class="dn-note-desc">Lasts one and a half beats. A dot adds half the value of the note to its duration.</div>
+                </div>
+                <div class="dn-note-row">
+                    <div class="dn-note-name">Sixteenth Note</div>
+                    <div class="dn-note-desc">Lasts a quarter of a beat. Sixteen sixteenth notes fill one measure of 4/4. Very common in drum fills and patterns.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dn-gray">
+        <div class="dn-section">
+            <div class="dn-label">Time Signatures</div>
+            <h2>Understanding the numbers at the start of the staff</h2>
+            <p>The time signature appears at the beginning of a piece of music as two stacked numbers. The top number tells you <strong>how many beats are in each measure</strong>. The bottom number tells you <strong>which note value gets one beat</strong>.</p>
+            <div class="dn-time-sigs">
+                <div class="dn-time-sig"><div class="dn-time-num">4/4</div><p>Four beats per measure, quarter note gets one beat. The most common time signature in popular music and drumming.</p></div>
+                <div class="dn-time-sig"><div class="dn-time-num">3/4</div><p>Three beats per measure. Common in waltz and some rock music. Counted 1-2-3, 1-2-3.</p></div>
+                <div class="dn-time-sig"><div class="dn-time-num">6/8</div><p>Six eighth notes per measure, grouped in two sets of three. Has a flowing, compound feel.</p></div>
+                <div class="dn-time-sig"><div class="dn-time-num">2/4</div><p>Two beats per measure. Common in marches and traditional snare drum music including Three Camps.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dn-white">
+        <div class="dn-section">
+            <div class="dn-label">Accents and Dynamics</div>
+            <h2>Playing some notes louder than others</h2>
+            <p>An accent mark (>) above or below a note tells you to play that note louder than the surrounding notes. Accents create musical shape and phrasing within a pattern.</p>
+            <p>In the Rhythm Library System, accent-driven sticking patterns use specific accent placements to create musical phrases that feel natural at the drumset. Learning to hear and play accents is one of the most important skills for musical drumming.</p>
+            <div class="dn-tip-box">
+                <strong>Listening tip:</strong> Before playing a notated pattern, tap along while listening to the audio playback in the app. Let your ear learn the phrase before your hands try to execute it.
+            </div>
+        </div>
+    </div>
+
+    <div class="dn-dark">
+        <div class="dn-section" style="text-align:center;">
+            <div class="dn-label-light">Practice Reading Now — Free</div>
+            <h2 style="color:#fff;">See Drum Notation in Action</h2>
+            <p style="color:#b0c4de; max-width:620px; margin:0 auto 32px;">The Rhythm Library System app displays live drum notation with a moving playhead as the pattern plays. Follow along with the notation while you listen — one of the most effective ways to connect reading with playing.</p>
+            <button class="dn-btn-primary" style="font-size:1.05rem; padding:16px 40px;" @onclick='() => Nav.NavigateTo("/")'>Practice Reading Notation in the Free App →</button>
+        </div>
+    </div>
+
+    <div class="dn-white">
+        <div class="dn-section">
+            <div class="dn-label">FAQ</div>
+            <h2>Common questions about drum notation</h2>
+            <div class="dn-faqs">
+                <div class="dn-faq"><h3>Do I need to read notation to use the Rhythm Library System app?</h3><p>No. The app plays audio so you can hear every pattern even if you cannot yet read the notation. But following the notation while you listen is one of the best ways to develop reading skills naturally.</p></div>
+                <div class="dn-faq"><h3>Is drum notation the same as regular music notation?</h3><p>It uses the same staff and note values, but the meaning of each line and space is different. In drum notation, position on the staff indicates which drum or cymbal to play, not which pitch to play.</p></div>
+                <div class="dn-faq"><h3>How long does it take to learn to read drum notation?</h3><p>Basic note values and the drum staff layout can be learned in a few practice sessions. Reading fluently at tempo takes consistent practice over weeks and months — but the progress comes quickly when you practice alongside audio playback.</p></div>
+                <div class="dn-faq"><h3>What time signature is used in the Rhythm Library System app?</h3><p>The app primarily uses 4/4 time for most patterns, with some exercises in 2/4. The notation displayed in the app shows the exact time signature for each exercise.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dn-white">
+        <div class="dn-section">
+            <div class="dn-label">Related Pages</div>
+            <h2>Continue your practice</h2>
+            <div class="dn-related-grid">
+                <div class="dn-related-card" @onclick='() => Nav.NavigateTo("/drum-sticking-patterns")'><h3>Drum Sticking Patterns →</h3><p>Apply what you read to structured sticking pattern exercises.</p></div>
+                <div class="dn-related-card" @onclick='() => Nav.NavigateTo("/three-camps-drum-exercise")'><h3>Three Camps Drum Exercise →</h3><p>A classic notation exercise to practice reading and playing together.</p></div>
+                <div class="dn-related-card" @onclick='() => Nav.NavigateTo("/drum-independence-exercises")'><h3>Drum Independence Exercises →</h3><p>Build coordination using the same notation-based system.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dn-white" style="border-top:1px solid #e0e0e0;">
+        <div class="dn-section" style="text-align:center;">
+            <div class="dn-price-badge">$9.95 — Digital PDF</div>
+            <h2>Get the Complete Rhythm Library System Book</h2>
+            <p style="max-width:620px; margin:0 auto 24px;">The 83-page PDF by <strong>Gordy Knudtson</strong> includes full notation for every pattern and exercise in the system — the perfect complement to the free interactive app.</p>
+            <a class="dn-btn-primary" href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">Buy the Book at gk-music.com ↗</a>
+        </div>
+    </div>
+
+    <footer class="dn-footer">
+        <p>Rhythm Library System &mdash; <button class="dn-footer-link" @onclick='() => Nav.NavigateTo("/landing")'>About the System</button> &nbsp;|&nbsp; <button class="dn-footer-link" @onclick='() => Nav.NavigateTo("/")'>Launch App</button> &nbsp;|&nbsp; <a href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">Get the Book</a></p>
+        <p style="margin-top:8px;">Questions? <a href="mailto:rhythmlibrarysystem@gmail.com" style="color:#90caf9;">rhythmlibrarysystem@gmail.com</a></p>
+    </footer>
+
+</div>

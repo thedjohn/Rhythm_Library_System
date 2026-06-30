@@ -1,0 +1,16 @@
+@inject NavigationManager Nav
+
+<nav class="seo-nav">
+    <div class="seo-nav-inner">
+        <button class="seo-nav-brand" @onclick='() => Nav.NavigateTo("/landing")'>Rhythm Library System</button>
+        <div class="seo-nav-links">
+            <button class="seo-nav-link" @onclick='() => Nav.NavigateTo("/")'>🥁 App</button>
+            <button class="seo-nav-link" @onclick='() => Nav.NavigateTo("/three-camps-drum-exercise")'>Three Camps</button>
+            <button class="seo-nav-link" @onclick='() => Nav.NavigateTo("/drum-sticking-patterns")'>Sticking Patterns</button>
+            <button class="seo-nav-link" @onclick='() => Nav.NavigateTo("/drum-independence-exercises")'>Independence</button>
+            <button class="seo-nav-link" @onclick='() => Nav.NavigateTo("/learn-drum-notation")'>Drum Notation</button>
+            <button class="seo-nav-link" @onclick='() => Nav.NavigateTo("/about-gordy-knudtson")'>About Gordy</button>
+            <a class="seo-nav-cta" href="https://www.gk-music.com/product/rhythm-library-system/" target="_blank" rel="noopener">Get the Book ↗</a>
+        </div>
+    </div>
+</nav>
