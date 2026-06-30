@@ -595,7 +595,7 @@ html, body {
 .ld-footer-link { background: none; border: none; color: #2979ff; cursor: pointer; font-size: 0.82rem; padding: 0; text-decoration: underline; }
 
 /* ── SEO Nav ── */
-.seo-nav { background: #0d1b3e; border-bottom: 2px solid #2979ff; position: sticky; top: 0; z-index: 100; }
+.seo-nav { background: #050d1f; border-bottom: 3px solid #2979ff; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.5); }
 .seo-nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 52px; }
 .seo-nav-brand { background: none; border: none; color: #fff; font-weight: 800; font-size: 0.95rem; cursor: pointer; padding: 8px 12px 8px 0; white-space: nowrap; }
 .seo-nav-links { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
