@@ -36,6 +36,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.rhythmlibrarysystem.com/drum-fills-and-solos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.rhythmlibrarysystem.com/help</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
