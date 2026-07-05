@@ -543,6 +543,7 @@ html, body {
 .ld-hero-badge { display: inline-block; background: #2979ff; color: #fff; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; text-transform: uppercase; }
 .ld-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
 .ld-accent { color: #2979ff; }
+.ld-hero-keyword { font-size: 1.2rem; font-weight: 600; color: #fff; margin: 6px 0 4px; }
 .ld-hero-sub { font-size: 1.05rem; color: #90caf9; margin-bottom: 10px; font-weight: 600; }
 .ld-hero-desc { font-size: clamp(0.95rem, 2vw, 1.1rem); color: #b0c4de; max-width: 660px; margin: 0 auto 36px; line-height: 1.75; }
 .ld-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
